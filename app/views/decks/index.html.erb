@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <%= link_to 'Créer une nouvelle liste', decks_choose_path, class:'btn btn-primary' %>
+    </div>
+    <div class="col-sm-6">
+     <%# <%= render "decks", decks: @decks %>
+     <h1> Listes en cours </h1>
+     <div class="card">
+     <ul>
+      <li>Nom du propriétaire de la liste</li>
+      <li>Date de création</li>
+      <li>Types d'éléments choisis</li>
+      <li><i class="fa-solid fa-bars-progress"></i>Votes</li>
+      <li><%= link_to 'Clôturer les votes', "#", class:'btn btn-primary' %></li>
+     </ul>
+     </div>
+    </div>
+  </div>
+</div>
