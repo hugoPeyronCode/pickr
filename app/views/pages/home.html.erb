@@ -1,4 +1,23 @@
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
 <%= render "shared/card-resto" %>
+
+<body class="home-page">
+  <div class="d-flex flex-column text-center">
+      <h1 style="color:white;"> Schwiper</h1>
+    <div class="d-flex flex-column">
+      <div class="flex-grow">
+        <h2 class="home-page">Choisir en un coup de pouce</h2>
+      </div>
+      <div class="flex-grow">
+        <a class = "btn-login" href="<%= new_user_session_path %>">Login</a>
+      </div>
+      <div class=" flex-grow">
+        <a class = "btn-signup" href="<%= new_user_registration_path %>"> Sign Up</a>
+      </div>
+    </div>
+  </div>
+</body>
+
