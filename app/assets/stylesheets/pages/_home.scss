@@ -1,1 +1,72 @@
 // Specific CSS for your home-page
+body.home-page {
+  //background-image: url(https://images.unsplash.com/photo-1599508704512-2f19efd1e35f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80);
+  color: white;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+div.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h2.home-page {
+  color: white;
+  margin: 100px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1.home-page{
+  color: white;
+}
+
+a.btn-login {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 12px;
+  width: 35%;
+  border: none;
+  border-radius: 15px;
+  background-color: #c1c1c1;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+a.btn-login:hover{
+  background-color: #000000;
+  border: solid;
+  border-color: white;
+}
+
+a.btn-signup {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 15px;
+  width: 35%;
+  border: none;
+  border-radius: 15px;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+a.btn-signup:hover{
+  background-color: #000000;
+  border: solid;
+  border-color: white;
+  color: white;
+}
