@@ -1,0 +1,17 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Créez votre liste de restaurants</h3>
+        <%= simple_form_for @deck do |f| %>
+          <%= f.input :name %>
+          <%= text_field_tag :address %>
+          <%# <%= f.input :address, %>
+            <%# input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"}, %>
+            <%# wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+          <%= submit_tag "Valider", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
