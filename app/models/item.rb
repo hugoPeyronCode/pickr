@@ -5,5 +5,5 @@ class Item < ApplicationRecord
   validates :photo_url, presence: true
   validates :price_range, presence: true
 
-  has_many :deck_items
+  has_many :deck_items, dependent: :destroy
 end
