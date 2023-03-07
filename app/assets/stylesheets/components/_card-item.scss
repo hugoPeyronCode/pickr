@@ -4,13 +4,14 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 30px;
   margin: 10px;
+  max-width: 600px;
 }
 
 .card-item > img {
   height: 300px;
   width: 100%;
   object-fit: cover;
-
+  object-position: top;
 }
 
 .card-item h2 {
@@ -31,4 +32,34 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.card-item-pricing{
+  text-align: end;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.ratings{
+}
+
+.ratings i{
+
+  color:#cecece;
+  font-size:16px;
+}
+
+.rating-color{
+  color:#fbc634 !important;
+}
+
+@media (min-width: 100px) and (max-width: 900px) {
+  .cards-item {
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    margin: 10px;
+  }
 }
