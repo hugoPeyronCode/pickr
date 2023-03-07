@@ -20,6 +20,10 @@ class DecksController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    @items.each do |item|
+      deck_item = DeckItem.new(deck: @deck, item: item)
+      deck_item.save!
+    end
   end
 
   private
