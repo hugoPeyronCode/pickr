@@ -1,4 +1,8 @@
+<% if user_signed_in? %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<% else %>
 <div class="navbar navbar-expand-sm navbar-dark navbar-lewagon">
+<% end %>
   <div class="container-fluid">
   <div class="d-flex text-align-center">
     <%= link_to "#", class: "navbar-brand" do %>
