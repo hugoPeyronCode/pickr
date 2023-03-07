@@ -4,6 +4,7 @@ input[type="password"],
 input[type="number"],
 textarea {
   background-color: rgb(0, 0, 0); // set the desired background color
+  color: white;
 }
 
 simple_form input[type="text"]:focus,
