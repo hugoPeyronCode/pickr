@@ -1,0 +1,23 @@
+.tab_btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: transparent; /* set background color to transparent */
+  border: none; /* remove border */
+  border-radius: 5px;
+  padding: 3px;
+  color: #555; /* set text color */
+  font-weight: bold;
+  transition: all 0.2s ease-in-out; /* add transition effect */
+}
+
+.tab_btn.active {
+  background-color: #fff; /* set background color for active tab */
+  color: #000; /* set text color for active tab */
+}
+
+.tab_btn:hover {
+  background-color: #eee; /* set background color on hover */
+  cursor: pointer;
+}
