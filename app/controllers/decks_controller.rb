@@ -15,6 +15,9 @@ class DecksController < ApplicationController
     @deck = Deck.new(deck_params)
     @deck.user = current_user
     @items = Item.near(params[:address], 0.5).limit(10)
+    @items.where(price_range: set_price_range)
+    @items = @items.where("rating >= ?", 2)
+    raise
     if @deck.save!
       redirect_to root_path
     else
@@ -31,4 +34,8 @@ class DecksController < ApplicationController
   def deck_params
     params.require(:deck).permit(:name)
   end
+
+  # def set_price_range
+  #   params[:price_range] / 15
+  # end
 end
