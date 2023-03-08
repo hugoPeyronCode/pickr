@@ -4,12 +4,10 @@ $green: #B1DA96;
   display: none;
 }
 .swiper {
-  position: absolute; top: 0;
-  left: 0;
-  right: 0;
-  padding-top: 5.875rem;
-  bottom: 5.875rem;
   overflow: hidden;
+  width: 100vw;
+  height: 80vh;
+  padding-top: 2rem;
 
   &__content {
     user-select: none;
