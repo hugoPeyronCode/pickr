@@ -12,5 +12,9 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1"
   }
 }
