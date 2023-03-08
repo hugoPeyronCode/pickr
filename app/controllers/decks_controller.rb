@@ -1,6 +1,8 @@
 class DecksController < ApplicationController
   def index
-    # @decks = Decks.all
+     @decks = Deck.all
+     @pending_decks = Deck.where(status: "Pending")
+     @closed_decks = Deck.all.where(status: "Closed")
   end
 
   def choose
