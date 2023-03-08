@@ -1,14 +1,9 @@
 <% decks.each do |deck| %>
   <div class="cards-deck">
-    <div class="card-deck-header">
-      <h5 class="card-deck-title"> <%= deck.name %></h5>
-    </div>
     <div class="card-deck-body">
       <div class="row">
-        <div class="col-md-6">
-          <p>Nom du deck: <%= deck.name %></p>
-          <p><%= deck.id %></p>
-          <%= deck.user_id %>
+      <h5 class="card-deck-title"> <%= deck.name %></h5>
+        <div class="container">
           <p>Propriétaire:
             <% if current_user.username == deck.user.username %>
               You
@@ -16,10 +11,9 @@
               <%= deck.user.username %>
             <% end %>
           </p>
-          <p>Date de creation: <%= deck.created_at.strftime("%d %B %Y")  %></p>
-          <p>Number of votes: <%= deck.deck_items.joins(:votes).count %></p>
-          <p>Status: <%= deck.status %></p>
-          <p>Current winner:
+          <p> 📅 <%= deck.created_at.strftime("%d %B %Y")  %></p>
+          <p> 🗳️ <%= deck.deck_items.joins(:votes).count %></p>
+          <p>🏆 Current winner?
             <% if deck.most_voted_deck_item %>
               <%= deck.most_voted_deck_item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes)
             <% else %>
@@ -27,6 +21,11 @@
             <% end %>
           </p>
         </div>
+          <% if deck.user_id == current_user.id && deck.status == "Pending" %>
+          <div class= "container">
+            <button class="btn btn-outline-warning btn-sm"> Close the vote </button>
+          </div>
+          <% end %>
       </div>
     </div>
   </div>

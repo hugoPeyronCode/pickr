@@ -7,12 +7,17 @@
 
     <div class="tab deck-tab">
       <button class="tablinks" onclick="openTab(event, 'all')" id="defaultOpen">All</button>
+      <button class="tablinks" onclick="openTab(event,'mine')"> Mine </button>
       <button class="tablinks" onclick="openTab(event, 'pending')">Pending</button>
       <button class="tablinks" onclick="openTab(event, 'done')">Closed</button>
     </div>
 
       <div id="all" class="tabcontent">
         <%= render partial: 'decks/deckcards', locals: { decks: @decks } %>
+      </div>
+
+      <div id="mine" class="tabcontent">
+        <%= render partial: 'decks/deckcards', locals: { decks: @my_decks } %>
       </div>
 
       <div id="pending" class="tabcontent">
