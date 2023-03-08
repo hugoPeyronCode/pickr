@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :decks, only: [:index, :new, :create]
+  resources :decks, only: [:index, :new, :create, :show]
   get "items", to: "items#index"
 end
