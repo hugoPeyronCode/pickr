@@ -25,6 +25,7 @@ puts "Creating 1 Pending Deck and 2 Closed Decks for Hugo..."
 restaurantdeck1 = Deck.create!(name: "hugo1-rest-230301", status: "Pending", user: hugo, deck_type: "Restaurant")
 restaurantdeck2 = Deck.create!(name: "hugo2-rest-230302", status: "Closed", user: hugo, deck_type: "Restaurant")
 restaurantdeck3 = Deck.create!(name: "hugo3-rest-230303", status: "Closed", user: hugo, deck_type: "Restaurant")
+restaurantdeckOber = Deck.create!(name: "hugo4-rest-230304", status: "Pending", user: hugo, deck_type: "Restaurant")
 puts "Decks created"
 
 puts "Creating 5 Restaurants for Pending deck..."
@@ -130,3 +131,118 @@ deck_item1 = DeckItem.create!(item: item3, deck: restaurantdeck1)
 deck_item1 = DeckItem.create!(item: item4, deck: restaurantdeck1)
 deck_item1 = DeckItem.create!(item: item5, deck: restaurantdeck1)
 puts "finished"
+
+
+######### METHODO AVEC GOOGLE API ##########
+
+# requête coordonnées:
+# https://maps.googleapis.com/maps/api/geocode/json?
+# address=Oberkampf
+# &components=country:FR
+# &key=#{ENV["GOOGLE_API_KEY"]}
+
+# requête nearby:
+# https://maps.googleapis.com/maps/api/place/nearbysearch/json
+# ?location=48.8700698%2C2.3852427
+# &radius=1500
+# &maxprice=2
+# &type=restaurant
+# &key=#{ENV["GOOGLE_API_KEY"]}
+
+# requête photo:
+# https://maps.googleapis.com/maps/api/place/photo?
+# maxwidth=1200
+# &photo_reference=[ICI LE PHOTO REFERENCE ID]
+# &key=#{ENV["GOOGLE_API_KEY"]}
+
+# requête opening hours:
+# https://maps.googleapis.com/maps/api/place/details/json?
+# place_id=[ICI LA PLACE ID]
+# &fields=name%2Crating%2Cformatted_phone_number&key=#{ENV["GOOGLE_API_KEY"]}
+
+#methode pour récup une URL
+def final_redirection_url(url)
+  uri = URI(url)
+  request = Net::HTTP::Head.new(uri)
+  response = Net::HTTP.start(uri.host, uri.port, { use_ssl: uri.scheme == "https" }) do |http|
+    http.request(request)
+  end
+  response["Location"]
+end
+
+# steps dans le terminal:
+require "open-uri"
+quartier = "Oberkampf"
+radius = "500"
+price = "2"
+
+#1 obtention des coordonnées du quartier
+url_coord = URI("https://maps.googleapis.com/maps/api/geocode/json?" \
+  "address=#{quartier}" \
+  "&components=country:FR" \
+  "&key=#{ENV["GOOGLE_API_KEY"]}")
+json_response_coord = JSON.parse(URI.open(url_coord).read)
+lat = json_response_coord.dig("results", 0, "geometry", "location", "lat")
+lng = json_response_coord.dig("results", 0, "geometry", "location", "lng")
+
+#2 obtention des 20 premiers résultats de restaurants pour ce quartier
+url_nearby = URI("https://maps.googleapis.com/maps/api/place/nearbysearch/json" \
+"?location=#{lat}%2C#{lng}" \
+"&radius=#{radius}" \
+"&maxprice=#{price}" \
+"&type=restaurant" \
+"&key=#{ENV["GOOGLE_API_KEY"]}")
+json_response_nearby = JSON.parse(URI.open(url_nearby).read)
+
+restaus_nearby = json_response_nearby.dig("results").map do |result|
+
+  parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
+    "maxwidth=1200" \
+    "&photo_reference=#{result.dig("photos", 0, "photo_reference")}" \
+    "&key=#{ENV["GOOGLE_API_KEY"]}")
+    json_response_photo_url = final_redirection_url(parsed_photo_url)
+
+  parsed_item_url = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
+    "place_id=#{result.dig("place_id")}" \
+    "&key=#{ENV["GOOGLE_API_KEY"]}")
+    json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
+    item_url = json_response_item_url.dig("results", 0, "website")
+
+  item = Item.create!(
+    name: result.dig("name"),
+    item_url: item_url,
+    address: result.dig("vicinity"),
+    rating: result.dig("rating"),
+    price_range: result.dig("price_level"),
+    item_type: "Restaurant",
+    photo_url: json_response_photo_url
+  )
+  puts "Restaurant #{item.name} created"
+  item
+end
+
+puts "Creation des Deck_items du restaurantdeckOber"
+restaus_nearby.each do |item|
+  DeckItem.create!(item: item, deck: restaurantdeckOber)
+end
+puts "finished"
+
+
+# parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
+#   "maxwidth=1200" \
+#   "&photo_reference=#{json_response_nearby.dig("results", index, "photos", 0, "photo_reference")}" \
+#   "&key=#{ENV["GOOGLE_API_KEY"]}")
+#   json_response_photo_url = JSON.parse(URI.open(parsed_photo_url).read)
+
+# pour test :
+# parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
+#   "maxwidth=1200" \
+#   "&photo_reference=AfLeUgP8XJVAbfekkXIr_q4ijaTbX95EI9wcxKkIur6Djyt1XTa7ml8rlFcTuU5kTikueVn2GseRPSZheTuxjbSaotBGOYjZWWwXYxNWrVPX1iRKuQxe2hynaNN8G-JJg-nGUtp61slpHV2sH6ovzo1ZG5rqH6Gb8btqL1kDX6ikWDJMEBJP" \
+#   "&key=#{ENV["GOOGLE_API_KEY"]}")
+#   json_response_photo_url = JSON.parse(URI.open(parsed_photo_url).read)
+
+# parsed_item_url = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
+#   "place_id=#{json_response_nearby.dig("results", index, "place_id")}" \
+#   "&key=#{ENV["GOOGLE_API_KEY"]}")
+#   json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
+#   => item_url: "#{json_response_item_url.dig("results", index, "website")}"
