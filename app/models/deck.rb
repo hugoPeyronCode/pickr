@@ -5,6 +5,7 @@ class Deck < ApplicationRecord
 
   has_many :deck_items, dependent: :destroy
 
+
   private
 
   def set_default_status

@@ -5,15 +5,10 @@
         <h3>Créez votre liste de restaurants</h3>
         <%= simple_form_for @deck do |f| %>
           <%= f.input :name, placeholder: "entrez le nom de votre liste" %>
-          <div>
-            <%= label_tag "Dans quel quartier?" %>
-            <%= text_field_tag :address %>
-          </div>
-          <div>
-            <%= label_tag "Pour quel budget?" %>
-            <%= select_tag :price_range, options_for_select([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]), include_blank: true %>
-          </div>
-          <%= submit_tag "Valider", class: "btn btn-primary" %>
+          <%= f.input :address,placeholder: "dans quel quartier?" %>
+          <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
+          <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
+          <%= f.submit "Valider", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
