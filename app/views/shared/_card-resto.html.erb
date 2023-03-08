@@ -1,18 +1,16 @@
-<div class="container">
 <div class="card-item">
-  <img src="https://lh3.googleusercontent.com/p/AF1QipM2lfD7wy-wGM4-TSLqxkqnN2oJCeRKSl8Tgy43=s1360-w1360-h1020" />
+  <img src= <%=deck_item.item.photo_url %> />
   <div class="align-items-center card-item-infos d-flex">
     <div>
-      <h2>Surpriz</h2>
-      <p>35 rue Oberkampf, 75011 Paris</p>
-      <p>Kebab</p>
+      <h2> <%= deck_item.item.name %> </h2>
+      <p><%=deck_item.item.address%></p>
     </div>
     <div>
       <div class="ratings">
-        <% 3.times do  %>
+        <% deck_item.item.rating.round.times do  %>
           <i class="fa fa-star rating-color"></i>
           <% end %>
-          <% (5 - 3).times do  %>
+          <% (5 - deck_item.item.rating.round).times do  %>
             <i class='fa fa-star'></i>
           <% end %>
       </div>
@@ -23,7 +21,7 @@
   </div>
 </div>
 
-</div>
+
 
 <%# <div class="ratings"> %>
   <%# <% item.rating.times do  %>
