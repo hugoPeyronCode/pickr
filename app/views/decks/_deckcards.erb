@@ -20,11 +20,18 @@
               No winner yet
             <% end %>
           </p>
+
+          <% if deck.status != "Hidden" %>
+          <div class="container">
+            <%= link_to "", hide_deck_path(deck), data: {turbo_method: :put, turbo_confirm: 'Are you sure?'}, class: "hide-icon fas fa-times" %>
+          </div>
+          <% end %>
         </div>
           <% if deck.user_id == current_user.id && deck.status == "Pending" %>
           <div class= "container">
             <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "btn btn-outline-warning btn-sm" %>
           </div>
+
           <% end %>
       </div>
     </div>
