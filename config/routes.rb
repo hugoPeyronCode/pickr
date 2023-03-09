@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :decks, only: [:index, :new, :create, :show]
+  resources :deck_items, only: [] do
+    resources :votes, only: [:create]
+  end
   get "items", to: "items#index"
 end
