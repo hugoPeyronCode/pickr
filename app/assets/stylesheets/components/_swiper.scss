@@ -8,6 +8,8 @@ $green: #B1DA96;
   width: 100vw;
   height: 80vh;
   padding-top: 2rem;
+  position: relative;
+
 
   &__content {
     user-select: none;
@@ -132,4 +134,9 @@ $green: #B1DA96;
     top: 0;
     width: 100%; height: 100%; cursor: grab;
   } }
+}
+
+.hidden-text {
+  position: absolute;
+  top: 165px;
 }

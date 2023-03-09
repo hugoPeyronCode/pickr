@@ -2,5 +2,11 @@
 
 <div class="container d-flex flex-column align-items-center">
 <h1> <%= @deck.name %> </h1>
+</div>
+
+<%=  render "shared/message-deck-fin", deck: @deck%>
+
+
+
 
 <%= render "shared/card-swipe", deck_items: @deck_item %>
