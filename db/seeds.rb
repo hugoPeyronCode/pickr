@@ -274,4 +274,4 @@ rating2 = doc2.css('.stareval-note').text
 photo_url2 = doc2.css('.thumbnail-img').map { |links| links['data-src'] }
 puts "finished"
 
-# genres = doc.css('.meta-body-info a.xXx').map(&:text).join(', ')
+genres = doc.css('.meta-body-info a.xXx').map(&:text).join(', ')

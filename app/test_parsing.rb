@@ -23,5 +23,9 @@ title2 = doc2.css('.meta-title-link').text
 director2 = doc2.css('.meta-body-direction a.blue-link').text
 synopsis2 = doc2.css('.synopsis .content-txt').text.strip
 rating2 = doc2.css('.stareval-note').text
-puts rating2
+
 photo_url2 = doc2.css('.thumbnail-img').map{|links| links['data-src']}
+
+genre_links = doc.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
+
+p genre_links
