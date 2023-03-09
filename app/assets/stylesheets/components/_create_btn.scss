@@ -1,0 +1,31 @@
+.create-btn-container {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.create-btn {
+  background-color: black;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 16px 16px;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  text-decoration: none;
+}
+
+.create-btn:hover {
+  background-color: #0069d9;
+  cursor: pointer;
+}
+
+.create-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
+}

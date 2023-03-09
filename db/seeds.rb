@@ -42,7 +42,7 @@ item2 = Item.create!(
   name: "Sukhumvit Thaï Street Food Paris 11",
   item_url: "https://www.instagram.com/sukhumvit.paris11/",
   address: "88 Rue Oberkampf, 75011 Paris",
-  rating: 4.7,
+  rating: 4,
   price_range: 0,
   item_type: "Restaurant",
   photo_url: "https://lh3.googleusercontent.com/p/AF1QipPX6bNfUxmIoN4atu0Y8HavtfYQJIDX-T_h3wLh=w1080-h608-p-no-v0"
@@ -51,7 +51,7 @@ item3 = Item.create!(
   name: "Boulangerie Chambelland",
   item_url: "https://chambelland.com/",
   address: "14 Rue Ternaux, 75011 Paris",
-  rating: 4.4,
+  rating: 4,
   price_range: 2,
   item_type: "Restaurant",
   photo_url: "https://www.ixelles.city/_custom_storage/collections/137/chambelland_20190517_73670.jpg"
@@ -60,7 +60,7 @@ item4 = Item.create!(
   name: "Açaï & You - St Ambroise (Brunch & Bowls Take away)",
   item_url: "http://www.acaiandyou.com/",
   address: "28 Rue Saint-Ambroise, 75011 Paris",
-  rating: 4.8,
+  rating: 5,
   price_range: 0,
   item_type: "Restaurant",
   photo_url: "https://meilleur-brunch.com/wp-content/uploads/2021/11/acaiandyou2_5_1125.jpeg"
@@ -69,7 +69,7 @@ item5 = Item.create!(
   name: "Scaria",
   item_url: "http://scaria.fr/",
   address: "88 Ave Parmentier, 75011 Paris",
-  rating: 4.6,
+  rating: 5,
   price_range: 2,
   item_type: "Restaurant",
   photo_url: "https://v2cdn1.centralappstatic.com/cache?url=gwBZASxXb5aRoDFLzKC_tPBNZW_8gQAU5teZacA5PGYUt85YiYjuwWQuzoCO6xpay10_CU97c2dAJQNlY4503SZS4vIwZ9RFzYgJFjRZotMk34y0sy3msnQ4KYwwffRJeTbKdDk7Fdx3sYrM4xrIVrSSgqBwTIv4p2qbB7JdM9tQDBUa0ga5PDssxBpn8JZYsdA_IZMgn4x1bja8ZF-Psbs8lgYfUpK1EbQ-YwGP8stHpZ_qv6rPXNNlsd5sDmWuWes5K0gCIhvrqRKLHca1hzTWEWmKXjGq9-aLuh356lLBilzu9Gh470zct1Wl8_3v5XWOWoFpGm_MBc3wLVEcAQXDrIPayZGkOSO8gcqQDH0E2FdN9rv_ClzEwuSffMPp62QJHRCgbSPZWONnnxuK6TZQK42wHwu5-aCw8bvkZt5LuA"

@@ -3,8 +3,8 @@ input[type="email"],
 input[type="password"],
 input[type="number"],
 textarea {
-  background-color: rgb(0, 0, 0); // set the desired background color
-  color: white;
+  background-color: #e9ecef; // set the desired background color
+  color: black;
 }
 
 simple_form input[type="text"]:focus,
@@ -12,6 +12,6 @@ simple_form input[type="text"]:focus,
 .simple_form input[type="password"]:focus,
 .simple_form input[type="number"]:focus,
 .simple_form textarea:focus {
-  background-color: rgb(23, 23, 23); // set the desired background color
-  color: white; // set the desired text color
+  background-color: #e9ecef ; // set the desired background color
+  color: black; // set the desired text color
 }
