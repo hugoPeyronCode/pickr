@@ -1,14 +1,29 @@
 <div class="container py-5">
-  <div class="row">
+  <div class="row justify">
     <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded p-3 shadow">
-        <h3>Créez votre liste de restaurants</h3>
-        <%= simple_form_for @deck do |f| %>
-          <%= f.input :name, placeholder: "entrez le nom de votre liste" %>
-          <%= f.input :address,placeholder: "dans quel quartier?" %>
-          <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
-          <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
-          <%= f.submit "Valider", class: "btn btn-primary" %>
+      <div class="deck-form">
+        <h3>Create a new deck</h3>
+        <% if params[:deck] == "Restaurants" %>
+
+          <%= simple_form_for @deck do |f| %>
+            <%= f.input :name, placeholder: "name of your deck" %>
+            <%= f.input :address, placeholder: "which neighbourhood?" %>
+            <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
+            <%= f.submit "Validate", class: "btn btn-primary" %>
+          <% end %>
+        <% elsif params[:deck] == "Movies" %>
+          <%= simple_form_for @deck do |f| %>
+              <%= f.input :name, placeholder: "name of your deck" %>
+              <%= f.input :address, placeholder: "which neighbourhood?" %>
+              <%= f.submit "Validate", class: "btn btn-primary" %>
+            <% end %>
+        <% else %>
+          <%= simple_form_for @deck do |f| %>
+              <%= f.input :name, placeholder: "name of your deck" %>
+              <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
+              <%= f.submit "Validate", class: "btn btn-primary" %>
+            <% end %>
         <% end %>
       </div>
     </div>
