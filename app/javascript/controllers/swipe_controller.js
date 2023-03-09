@@ -17,7 +17,7 @@ export default class extends Controller {
   }
 
   swipeLeft(id){
-    const url = `/matches`
+    const url = `/deck_items/${id}/votes`
     const options = {
       method: "POST",
       headers: {
