@@ -17,6 +17,7 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
     @deck.user = current_user
+    @deck.status = "Pending"
 
     if @deck.save!
       redirect_to deck_path(@deck)
