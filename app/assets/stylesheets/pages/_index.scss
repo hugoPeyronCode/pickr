@@ -1,2 +1,47 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.create-round-btn-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  position: sticky;
+  bottom: 8px;
+  right: 8px;
+}
+
+.create-round-btn {
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: light;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-round-btn:hover {
+  background-color: #a3a3a3;
+  cursor: pointer;
+}
+
+a.create-round-btn:hover {
+  color: #000000;
+  cursor: pointer;
+}
+
+.create-round-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
+}
