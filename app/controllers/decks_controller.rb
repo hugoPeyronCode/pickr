@@ -25,6 +25,7 @@ class DecksController < ApplicationController
       @items = Item.near(@deck.address, 10).limit(10)
       @items = @items.where("price_range >= ?", @deck.price_range)
       @items = @items.where(rating: @deck.rating)
+      @items = @items.where(movie_title: @deck.movie_title)
 
       @items.each do |item|
         deck_item = DeckItem.new(deck: @deck, item: item)
@@ -61,6 +62,6 @@ class DecksController < ApplicationController
   private
 
   def deck_params
-    params.require(:deck).permit(:name, :address, :rating, :price_range)
+    params.require(:deck).permit(:name, :address, :rating, :price_range, :movie_title)
   end
 end

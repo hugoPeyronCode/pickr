@@ -12,10 +12,9 @@
             <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
             <%= f.submit "Validate", class: "btn btn-primary" %>
           <% end %>
-        <% elsif params[:deck] == "Movies" %>
+        <% elsif params[:deck] == "Films" %>
           <%= simple_form_for @deck do |f| %>
               <%= f.input :name, placeholder: "name of your deck" %>
-              <%= f.input :address, placeholder: "which neighbourhood?" %>
               <%= f.submit "Validate", class: "btn btn-primary" %>
             <% end %>
         <% else %>

@@ -7,8 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require "open-uri"
+require "nokogiri"
 
 puts "Cleaning database..."
+Vote.destroy_all
 User.destroy_all
 Item.destroy_all
 Deck.destroy_all
@@ -171,7 +173,6 @@ def final_redirection_url(url)
 end
 
 # steps dans le terminal:
-require "open-uri"
 quartier = "Oberkampf"
 radius = "500"
 price = "2"
@@ -246,3 +247,31 @@ puts "finished"
 #   "&key=#{ENV["GOOGLE_API_KEY"]}")
 #   json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
 #   => item_url: "#{json_response_item_url.dig("results", index, "website")}"
+
+url1 = 'https://www.allocine.fr/film/aucinema/'
+html = URI.open(url1)
+doc = Nokogiri::HTML(html)
+
+puts "Creation de la 1ère page de films"
+title = doc.css('.meta-title-link').text
+# genre = doc.css('.meta-body-info').map(&:text).join(', ')
+# puts genre => besoin de retravailler car on chope les dates aussi
+director = doc.css('.meta-body-direction a.blue-link').text
+synopsis = doc.css('.synopsis .content-txt').text.strip
+rating = doc.css('.stareval-note').text
+photo_url = doc.css('.thumbnail-img').map { |links| links['data-src'] }
+puts "finished"
+
+url2 = "https://www.allocine.fr/film/aucinema/?page=2"
+html2 = URI.open(url2)
+doc2 = Nokogiri::HTML(html2)
+
+puts "Creation de la 2ème page de films"
+title2 = doc2.css('.meta-title-link').text
+director2 = doc2.css('.meta-body-direction a.blue-link').text
+synopsis2 = doc2.css('.synopsis .content-txt').text.strip
+rating2 = doc2.css('.stareval-note').text
+photo_url2 = doc2.css('.thumbnail-img').map { |links| links['data-src'] }
+puts "finished"
+
+# genres = doc.css('.meta-body-info a.xXx').map(&:text).join(', ')
