@@ -19,18 +19,17 @@ class DecksController < ApplicationController
     @deck.user = current_user
 
     if @deck.save!
+      @items = Item.near(@deck.address, 0.5).limit(10)
+      @items = @items.where(price_range: @deck.price_range)
+      @items = @items.where(rating: @deck.rating)
+
+      @items.each do |item|
+        deck_item = DeckItem.new(deck: @deck, item: item)
+        deck_item.save!
+      end
       redirect_to deck_path(@deck)
     else
       render :new, status: :unprocessable_entity
-    end
-
-    @items = Item.near(@deck.address, 0.5).limit(10)
-    @items.where(price_range: @deck.price_range)
-    @items = @items.where(rating: @deck.rating)
-
-    @items.each do |item|
-      deck_item = DeckItem.new(deck: @deck, item: item)
-      deck_item.save!
     end
   end
 
