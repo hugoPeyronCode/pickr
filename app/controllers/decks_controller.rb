@@ -16,6 +16,7 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new(deck_params)
+    @deck.status = "Pending"
     @deck.user = current_user
     @deck.status = "Pending"
 
