@@ -4,8 +4,8 @@ class Deck < ApplicationRecord
   validates :name, presence: true
 
   has_many :deck_items, dependent: :destroy
-
-
+  has_many :items, through: :deck_items
+  has_many :votes, through: :deck_items
 
   def set_default_status
     self.status = 'pending'
