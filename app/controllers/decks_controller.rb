@@ -16,13 +16,11 @@ class DecksController < ApplicationController
 
   def create
     @deck = Deck.new(deck_params)
-    @deck.status = "Pending"
     @deck.user = current_user
     @deck.status = "Pending"
-
     if @deck.save!
-      @items = Item.near(@deck.address, 0.5).limit(10)
-      @items = @items.where(price_range: @deck.price_range)
+      @items = Item.near(@deck.address, 10).limit(10)
+      @items = @items.where("price_range >= ?", @deck.price_range)
       @items = @items.where(rating: @deck.rating)
 
       @items.each do |item|
