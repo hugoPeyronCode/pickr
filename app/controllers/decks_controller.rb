@@ -17,6 +17,7 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
     @deck.user = current_user
+    @deck.status = "Pending"
 
     if @deck.save!
       redirect_to deck_path(@deck)
@@ -37,6 +38,16 @@ class DecksController < ApplicationController
   def show
     @deck = Deck.find(params[:id])
     @deck_items = @deck.deck_items
+    @deck_winning_item = @deck.most_voted_deck_item
+  end
+
+  def close_vote
+    @deck = Deck.find(params[:id])
+    if @deck.update(status: "Closed")
+      redirect_to deck_path(@deck), notice: "Vote closed successfully."
+    else
+      redirect_to deck_path(@deck), alert: "Error closing vote."
+    end
   end
 
   private

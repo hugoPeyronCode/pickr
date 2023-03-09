@@ -1,6 +1,13 @@
 
-
 <div class="container d-flex flex-column align-items-center">
 <h1> <%= @deck.name %> </h1>
 
-<%= render "shared/card-swipe", deck_items: @deck_item %>
+<% if @deck.status == "Closed"  %>
+
+  <%= render "shared/deck_winning_item", winner: @deck_winning_item %>
+
+<% else  %>
+
+  <%= render "shared/card-swipe", deck_items: @deck_item %>
+
+<% end %>
