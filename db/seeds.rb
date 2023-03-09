@@ -212,7 +212,7 @@ restaus_nearby = json_response_nearby.dig("results").map do |result|
     name: result.dig("name"),
     item_url: item_url,
     address: result.dig("vicinity"),
-    rating: result.dig("rating"),
+    rating: result.dig("rating").round(0).to_i,
     price_range: result.dig("price_level"),
     item_type: "Restaurant",
     photo_url: json_response_photo_url
