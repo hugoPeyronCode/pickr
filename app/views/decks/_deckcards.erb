@@ -15,7 +15,7 @@
           <p> 🗳️ <%= deck.deck_items.joins(:votes).count %></p>
           <p>🏆
             <% if deck.most_voted_deck_item %>
-              <%= deck.most_voted_deck_item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes)
+              <%= deck.most_voted_deck_item.item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes)
             <% else %>
               No winner yet
             <% end %>
