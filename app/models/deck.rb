@@ -1,5 +1,4 @@
 class Deck < ApplicationRecord
-  #before_create :set_default_status
   belongs_to :user
   validates :name, presence: true
 
