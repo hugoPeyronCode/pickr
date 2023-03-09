@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :decks, only: [:index, :new, :create, :show, :destroy] do
     member do
       get :close_vote
+      put :hide
     end
   end
   resources :deck_items, only: [] do

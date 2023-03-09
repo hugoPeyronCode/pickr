@@ -1,9 +1,11 @@
 class DecksController < ApplicationController
   def index
      @decks = Deck.all
-     @my_decks = Deck.joins(:deck_items).joins(:votes).where("decks.user_id = ? OR votes.user_id = ?", current_user.id, current_user.id).distinct
+     @all_my_decks = Deck.joins(:deck_items).joins(:votes).where("decks.user_id = ? OR votes.user_id = ?", current_user.id, current_user.id).distinct
+     @my_decks = @all_my_decks.where.not(status: "Hidden")
      @pending_decks = @my_decks.where(status: "Pending")
      @closed_decks = @my_decks.all.where(status: "Closed")
+     @hidden_decks = @my_decks.all.where(status: "Hidden")
      # @my_decks = Deck.all.where(user_id: current_user.id.to_s)
 
      # here i want to see all the decks that I created or that I've voted into.
@@ -51,6 +53,14 @@ class DecksController < ApplicationController
       redirect_to deck_path(@deck), alert: "Error closing vote."
     end
   end
+
+  def hide
+    @deck = Deck.find(params[:id])
+    @deck.status = "Hidden"
+    @deck.save
+    redirect_to decks_path
+  end
+
 
   def destroy
     @deck = Deck.find(params[:id])
