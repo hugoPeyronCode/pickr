@@ -23,7 +23,7 @@
         </div>
           <% if deck.user_id == current_user.id && deck.status == "Pending" %>
           <div class= "container">
-            <button class="btn btn-outline-warning btn-sm"> Close the vote </button>
+            <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "btn btn-outline-warning btn-sm" %>
           </div>
           <% end %>
       </div>
