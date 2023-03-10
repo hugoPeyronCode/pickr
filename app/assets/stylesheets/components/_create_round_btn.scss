@@ -1,13 +1,12 @@
-.create-btn-container {
-
- margin-top: 10px;
-  margin-bottom: 20px;
+.create-round-btn-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.create-btn {
+.create-round-btn {
   background-color: black;
   margin-bottom: 20px;
   border: none;
@@ -24,17 +23,17 @@
   text-decoration: none;
 }
 
-.create-btn:hover {
+.create-round-btn:hover {
   background-color: #a3a3a3;
   cursor: pointer;
 }
 
-a.create-btn:hover {
+a.create-round-btn:hover {
   color: #000000;
   cursor: pointer;
 }
 
-.create-btn:focus {
+.create-round-btn:focus {
   outline: none;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
 }

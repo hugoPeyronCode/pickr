@@ -14,7 +14,7 @@ class Deck < ApplicationRecord
   def most_voted_deck_item
     self.deck_items.joins(:votes)
     .group('deck_items.id')
-    .select('deck_items.*, COUNT(votes.id) AS votes_count')
+    .select('deck_items.*, SUM(votes.value) AS votes_count')
     .order('votes_count DESC')
     .first
   end
