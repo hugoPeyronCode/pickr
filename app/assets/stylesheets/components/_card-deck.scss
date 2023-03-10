@@ -1,16 +1,21 @@
 .card-deck-body {
+  position: relative;
   background-size: cover;
   background-position: center;
   padding: 15px;
   margin-top: 15px;
   margin-bottom: 15;
-  display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(0, 0, 0);
   font-size: 15px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(89, 89, 89, 0.2);
+
+  h5 {
+    font-size: 1.7em;
+    font-weight: bold;
+  }
 
   p {
     margin: 3px;
@@ -19,4 +24,11 @@
   .btn {
     margin: 5px;
   }
+
+  .hide-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
 }

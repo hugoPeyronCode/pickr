@@ -1,3 +1,18 @@
-<p>And the winner is....</p>
+<div class="container">
+  <h2 ">And the restaurant for the <%= @deck.name %> event is.... </h2>
+  <div class="container">
+    <h3>
+    <strong><%= winner.item.name %> </strong>
+    </h3>
+  </div>
 
-<%= winner.item.name %>
+  <div class="container">
+    <%= winner.item.address %>
+  </div>
+
+  <div class="container">
+       <img class="winner-image", src="<%= winner.item.photo_url %>"/>
+  </div>
+
+  <p>Share the result with your friends</p>
+</div>

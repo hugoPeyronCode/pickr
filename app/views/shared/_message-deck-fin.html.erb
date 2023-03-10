@@ -2,16 +2,28 @@
   <div class="container d-flex flex-column align-items-center hidden-text">
   <h2 class="text-center fw-bold"> BRAVO ! 🥳</h2>
   <p class="text-center fw-bold"> Vous avez terminé votre vote, partagez le lien suivant à vos amis
-  pour qu’ils puissent voter à leur tour : http://localhost:3000/decks/<%=@deck.id%> </p>
+  pour qu’ils puissent voter à leur tour :
+  <br>
+  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
+    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+    <div class="bg"></div>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
+  </div>
+   </p>
+
   <p class="text-center fw-bold"> Vous êtes le propriétaire de ce sondage, vous pourrez le clore depuis le dashboard!</p>
   </div>
 <% else %>
   <div class="container d-flex flex-column align-items-center hidden-text">
   <h2 class="text-center fw-bold"> BRAVO ! 🥳</h2>
   <p class="text-center fw-bold"> Vous avez terminé votre vote, partagez le lien suivant à vos amis
-  pour qu’ils puissent voter à leur tour : http://localhost:3000/decks/<%=@deck.id%> </p>
-<p class="text-center fw-bold"> Le propriétaire de ce sondage, vous préviendra quand il sera terminé, ou vous pourrez le voir sur votre Dashboard</p>
-
+  pour qu’ils puissent voter à leur tour :
+  <br>
+  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
+    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+    <div class="bg"></div>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
   </div>
+   </p>
 
 <% end %>

@@ -13,19 +13,30 @@
           </p>
           <p> 📅 <%= deck.created_at.strftime("%d %B %Y")  %></p>
           <p> 🗳️ <%= deck.deck_items.joins(:votes).count %></p>
-          <p>🏆
+          <p> 🏆
             <% if deck.most_voted_deck_item %>
               <%= deck.most_voted_deck_item.item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes)
             <% else %>
               No winner yet
             <% end %>
           </p>
-        </div>
-          <% if deck.user_id == current_user.id && deck.status == "Pending" %>
-          <div class= "container">
-            <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "btn btn-outline-warning btn-sm" %>
+          <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
+            <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(deck) %>" readonly>
+            <div class="bg"></div>
+            <button class="btn btn-primary" data-action="click->clip-board#copy">Share List</button>
+          </div>
+
+          <% if deck.status != "Hidden" %>
+          <div class="container">
+            <%= link_to "", hide_deck_path(deck), data: {turbo_method: :put, turbo_confirm: 'Are you sure?'}, class: "hide-icon fas fa-times" %>
           </div>
           <% end %>
+        </div>
+        <div class= "container">
+          <% if deck.user_id == current_user.id && deck.status == "Pending" %>
+          <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "btn btn-outline-warning btn-sm" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
