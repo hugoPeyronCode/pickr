@@ -146,3 +146,13 @@ $green: #B1DA96;
   position: absolute;
   top: 165px;
 }
+
+.bg {
+  position: absolute;
+  background: #f4f4f4;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}

@@ -5,9 +5,10 @@
   pour qu’ils puissent voter à leur tour :
   <br>
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-  <input class="d-none" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
-  <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
-</div>
+    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+    <div class="bg"></div>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
+  </div>
    </p>
 
   <p class="text-center fw-bold"> Vous êtes le propriétaire de ce sondage, vous pourrez le clore depuis le dashboard!</p>
@@ -19,9 +20,10 @@
   pour qu’ils puissent voter à leur tour :
   <br>
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-  <input class="d-none" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
-  <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
-</div>
+    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+    <div class="bg"></div>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
+  </div>
    </p>
 
 <% end %>
