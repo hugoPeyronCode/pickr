@@ -88,10 +88,14 @@ $green: #B1DA96;
       font-size: 1.6rem;
       color: #FFFFFF;
       margin-bottom: 0.3rem;
+      box-shadow: 0 0 5px rgba(89, 89, 89, 0.2);
+
     }
     &__distance {
       font-size: 0.75rem;
       color: #FFFFFF;
+      box-shadow: 0 0 5px rgba(89, 89, 89, 0.2);
+
     }
   &__choice {
     position: absolute; left: 0;
