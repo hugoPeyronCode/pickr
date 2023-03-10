@@ -79,6 +79,7 @@ $green: #B1DA96;
       }
     }
     &__img {
+      filter: brightness(0.8);
       overflow: hidden;
       width: 100%;
       height: 100%;
