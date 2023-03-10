@@ -5,7 +5,7 @@
   pour qu’ils puissent voter à leur tour :
   <br>
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-  <input class="d-none" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+  <input class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
   <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
 </div>
    </p>
@@ -19,7 +19,7 @@
   pour qu’ils puissent voter à leur tour :
   <br>
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-  <input class="d-none" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+  <input style="opacity: 0; height: 0; visibility: hidden; width:0; position: absolute;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
   <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
 </div>
    </p>

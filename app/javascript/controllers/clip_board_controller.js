@@ -11,6 +11,7 @@ export default class extends Controller {
   }
 
   copy(event) {
+    console.log("click")
     this.inputTarget.select();
     document.execCommand('copy');
     event.currentTarget.disabled = true;
