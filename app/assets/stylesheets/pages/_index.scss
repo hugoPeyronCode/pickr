@@ -14,8 +14,8 @@
 
 .create-round-btn {
   background-color: black;
-  width: 80px;
-  height: 80px;
+  /* width: 80px; */
+  /* height: 80px; */
   font-size: 80px;
   margin-bottom: 20px;
   border: none;
@@ -29,6 +29,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  line-height: 0.6;
 }
 
 .create-round-btn:hover {
@@ -43,5 +45,5 @@ a.create-round-btn:hover {
 
 .create-round-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000000;
 }
