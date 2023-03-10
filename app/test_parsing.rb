@@ -20,8 +20,14 @@ indices1 = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
 rating_spectator1 = rating1.values_at(*indices1)
 rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 photo_url1 = doc.css('.thumbnail-img').map { |links| links['data-src'] }
-genre_links1 = doc.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
-genres1 = genre_links1.select { |str| str.match?(/\A\p{L}+\z/) }
+
+genre_links1 = doc.css('.meta-body-info').map(&:text)
+clean_genre = genre_links1.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
+
+
+# .gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
+# genres1 = genre_links1.select { |str| str.match?(/\A\p{L}+\z/) }
+p clean_genre
 
 
 url2 = 'https://www.allocine.fr/film/aucinema/'
@@ -79,27 +85,4 @@ movies_seed = doc.map do |result|
   )
   puts "Restaurant #{item.name} created"
   item
-end
-
-movies = []
-title1.each_with_index do |title, index|
-  movie = Item.new(
-    title,
-    director1,
-    clean_synopsis1[index],
-    rating_spectator1[index],
-    photo_url1[index],
-    genres1[index]
-  )
-  movies << movie
-end
-
-movies.each do |movie|
-  puts "Title: #{movie.title}"
-  puts "Director: #{movie.director}"
-  puts "Synopsis: #{movie.synopsis}"
-  puts "Rating: #{movie.rating}"
-  puts "Photo URL: #{movie.photo_url}"
-  puts "Genres: #{movie.genres}"
-  puts ""
 end

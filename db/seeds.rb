@@ -252,11 +252,11 @@ url = 'https://www.allocine.fr/film/aucinema/'
 html = URI.open(url)
 doc = Nokogiri::HTML(html)
 
-puts "création de la 1ère page de films"
 #je récupère les titres et je récupère un array. Pour éviter de prendre les bandes annonces des films à venir, je sélectionne les 15 premiers car il n'y a que 15 films par page
 title1 = doc.css('.meta-title-link').map(&:text).first(15)
 
-director1 = doc.css('.meta-body-direction a.blue-link').text
+director1 = doc.css('.meta-body-direction a.blue-link').map(&:text)
+# p director1
 
 #je récupère les synopsis que je récupère en array, je supprime les balises \n qui sont les sauts de ligne
 synopsis1 = doc.css('.synopsis .content-txt').map(&:text)
@@ -278,21 +278,18 @@ rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 photo_url1 = doc.css('.thumbnail-img').map { |links| links['data-src'] }
 
 #je récupère les genres qui sont mélangés avec les horaires et les dates. j'enlève les horaires et les dates
-genre_links1 = doc.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
-genres1 = genre_links1.select { |str| str.match?(/\A\p{L}+\z/) }
-
-puts "finished"
+genre_links1 = doc.css('.meta-body-info').map(&:text)
+genre1 = genre_links1.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
 
 
 url2 = 'https://www.allocine.fr/film/aucinema/'
 html2 = URI.open(url2)
 doc2 = Nokogiri::HTML(html2)
 
-puts "création de la 2ème page de films"
 #je récupère les titres et je récupère un array. Pour éviter de prendre les bandes annonces des films à venir, je sélectionne les 15 premiers car il n'y a que 15 films par page
 title2 = doc2.css('.meta-title-link').map(&:text).first(15)
 
-director2 = doc2.css('.meta-body-direction a.blue-link').text
+director2 = doc2.css('.meta-body-direction a.blue-link').map(&:text)
 
 #je récupère les synopsis que je récupère en array, je supprime les balises \n qui sont les sauts de ligne
 synopsis2 = doc2.css('.synopsis .content-txt').map(&:text)
@@ -316,28 +313,42 @@ photo_url2 = doc2.css('.thumbnail-img').map { |links| links['data-src'] }
 
 genre_links2 = doc2.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
 genres2 = genre_links2.select { |str| str.match?(/\A\p{L}+\z/) }
-puts "finished"
 
-# movies = []
-# title1.each_with_index do |title, index|
+
+puts "création de la 1ère page de films"
+movies = []
+
+title1.each_with_index do |title, index|
+  movie = Item.new(
+    name: title,
+    movie_director: director1[index],
+    synopsis: clean_synopsis1[index],
+    rating: rating_spectator1[index],
+    photo_url: photo_url1[index],
+    movie_genre: genre1[index]
+  )
+  if movie.save
+    p "saved movie"
+  end
+  movies << movie
+end
+puts "finished creating first 15 movies"
+
+# puts "création de la 2ème page de films"
+# movies2 = []
+# title2.each_with_index do |title, index|
 #   movie = Item.new(
-#     title,
-#     director1,
-#     clean_synopsis1[index],
-#     rating_spectator1[index],
-#     photo_url1[index],
-#     genres1[index]
+#     name: title2,
+#     movie_director: director2[index],
+#     synopsis: clean_synopsis2[index],
+#     rating: rating_spectator2[index],
+#     photo_url: photo_url2[index],
+#     movie_genre: genres2[index]
 #   )
-#   movies << movie
+#   if movie.save
+#     p "saved movie"
+#   end
+#   movies2 << movie
 # end
 
-# # Output the movies
-# movies.each do |movie|
-#   puts "Title: #{movie.title}"
-#   puts "Director: #{movie.director}"
-#   puts "Synopsis: #{movie.synopsis}"
-#   puts "Rating: #{movie.rating}"
-#   puts "Photo URL: #{movie.photo_url}"
-#   puts "Genres: #{movie.genres}"
-#   puts ""
-# end
+# puts "finished creating the last 15 movies"

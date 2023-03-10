@@ -22,11 +22,15 @@ class DecksController < ApplicationController
     @deck.user = current_user
     @deck.status = "Pending"
     if @deck.save!
-      @items = Item.near(@deck.address, 10).limit(10)
-      @items = @items.where("price_range >= ?", @deck.price_range)
-      @items = @items.where(rating: @deck.rating)
-      @items = @items.where(movie_genre: @deck.movie_genre)
 
+      if params[:deck] == "Restaurants"
+        @items = Item.near(@deck.address, 10).limit(10)
+        @items = @items.where("price_range >= ?", @deck.price_range)
+        @items = @items.where(rating: @deck.rating)
+      elsif params[:deck] == "Films"
+        @items = @items.where(rating: @deck.rating)
+        @items = @items.where(movie_genre: @deck.movie_genre)
+      end
       @items.each do |item|
         deck_item = DeckItem.new(deck: @deck, item: item)
         deck_item.save!
@@ -62,6 +66,6 @@ class DecksController < ApplicationController
   private
 
   def deck_params
-    params.require(:deck).permit(:name, :address, :rating, :price_range, :movie_title, :movie_genre)
+    params.require(:deck).permit(:name, :address, :rating, :price_range, :movie_title, :movie_genre, :item_type)
   end
 end

@@ -2,10 +2,12 @@
   <div class="row justify">
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="deck-form">
+      <%= console %>
         <h3>Create a new deck</h3>
         <% if params[:deck] == "Restaurants" %>
 
           <%= simple_form_for @deck do |f| %>
+            <%= f.input :item_type, placeholder: "name of the items" %>
             <%= f.input :name, placeholder: "name of your deck" %>
             <%= f.input :address, placeholder: "which neighbourhood?" %>
             <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
@@ -14,8 +16,9 @@
           <% end %>
         <% elsif params[:deck] == "Films" %>
           <%= simple_form_for @deck do |f| %>
+              <%= f.input :item_type, placeholder: "name of the items" %>
               <%= f.input :name, placeholder: "name of your deck" %>
-              <%= f.input :movie_genre, collection: [["Drame", "Drame" ], ["Comédie","Comédie"], ["Thriller", "Thriller"], ["Fantastique", "Fantastique"], ["Romance", "Romance"]] %>
+              <%= f.input :movie_genre, collection: ["Drame", "Comédie", "Thriller", "Fantastique", "Romance", "Horreur"] %>
               <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
               <%= f.submit "Validate", class: "btn btn-primary" %>
             <% end %>
