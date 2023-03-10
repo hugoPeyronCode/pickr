@@ -12,8 +12,9 @@
 }
 
 .tab_btn.active {
-  background-color: #fff; /* set background color for active tab */
+  background-color: #CCFF00; /* set background color for active tab */
   color: #000; /* set text color for active tab */
+  padding: 3px 10px;
 }
 
 .tab_btn:hover {
