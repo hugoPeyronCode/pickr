@@ -1,21 +1,3 @@
 <%= render partial: 'decks/decktabs' %>
 
-<div class="navbar-app d-flex justify-content-between p-3">
-  <%= link_to decks_path, class:"d-flex flex-column align-items-center" do %>
-    <i class="fa-solid fa-question white fw-bold"></i>
-    <div>
-      Dashboard
-    </div>
-  <% end %>
-  <%= link_to decks_choose_path, class:'link-center' do %>
-    <i class="fa-solid fa-circle-plus navbar-btn"></i>
-  <% end %>
 
-  <%= link_to decks_path, class:"d-flex flex-column align-items-center" do %>
-    <i class="fa-solid fa-user white"></i>
-    <div>
-      Profile
-    </div>
-  <% end %>
-
-</div>

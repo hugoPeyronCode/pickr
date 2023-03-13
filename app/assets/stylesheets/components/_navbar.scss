@@ -18,10 +18,29 @@
   width: 100%;
   color: white;
   padding: 10px;
+  z-index: 999999;
     a{
       text-decoration: none;
       color: white;
     }
+}
+
+.navbar-collapse-custom{
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: black;
+  padding: 0.5rem 1.3rem;
+  border-radius: 0 0 0.5rem 0;
+  transform: rotate(180deg);
+  transform-origin: top;
+  ul {
+    flex-direction: column-reverse !important;
+    li {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .navbar-btn{
