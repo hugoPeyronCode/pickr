@@ -15,4 +15,10 @@
   </div>
 
   <p>Share the result with your friends</p>
+
+  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
+    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
+    <div class="bg"></div>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
+  </div>
 </div>
