@@ -22,11 +22,8 @@
   <div class="collapse navbar-collapse navbar-collapse-custom" id="navbarBottom">
     <ul class="navbar-nav me-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Dashboard", decks_path, class: "nav-link" %>
-        </li>
         <li class="nav-item">
-          <%= link_to "Nouvelle liste", decks_choose_path, class: "nav-link" %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
             <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
