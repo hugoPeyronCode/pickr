@@ -1,20 +1,14 @@
 <% if @deck.status == "Closed"  %>
   <%= render "shared/deck_winning_item", winner: @deck_winning_item, decks: @decks %>
+
 <% else  %>
+  <div class="container d-flex flex-column align-items-center">
+      <h1> <%= @deck.name %> </h1>
+  </div>
 
-<div class="container d-flex flex-column align-items-center">
-    <h1> <%= @deck.name %> </h1>
-</div>
+  <%= render "shared/progress-bar", completed_percent: @completed_percent%>
 
-<div class="progres-bar">
-  <div class="progress-bar-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-
-
-  <%= render "shared/progress-bar", deck: @deck %>
   <%= render "shared/card-swipe", deck_items: @deck_item %>
-
   <%= render "shared/message-deck-fin", deck: @deck%>
 
 <% end %>
-<% console %>

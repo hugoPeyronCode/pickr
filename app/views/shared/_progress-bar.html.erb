@@ -1,34 +1,9 @@
- <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: <%= @completed_percent %>%;" aria-valuenow="<%= @completed_percent %>" aria-valuemin="0" aria-valuemax="100">
-      <%= @completed_percent %>%
+ <div class="progress" data-controller="progress-bar" data-progress-bar-deck-id-value="<%= @deck.id%>">
+    <div class="progress-bar" role="progressbar"
+    style="width: <%= completed_percent %>%;"
+    aria-valuenow="<%= completed_percent %>"
+    aria-valuemin="0" aria-valuemax="100"
+    >
+      <%= completed_percent %>%
     </div>
   </div>
-
-<script>
-  function updateProgressBar() {
-    var progressBar = document.querySelector('.progress-bar');
-    var deckId = <%= @deck.id %>;
-
-    // Send an AJAX request to get the updated progress status
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/decks/' + deckId + '/progress', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-          var response = JSON.parse(xhr.responseText);
-          var completedPercent = response.completed_percent;
-
-          // Update the progress bar
-          progressBar.style.width = completedPercent + '%';
-          progressBar.setAttribute('aria-valuenow', completedPercent);
-          progressBar.innerHTML = completedPercent + '%';
-        }
-    };
-    xhr.send();
-  }
-
-  updateProgressBar();
-  setInterval(updateProgressBar, 1000);
-</script>
-
-
-Deux problèmes: 
