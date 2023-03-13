@@ -312,7 +312,7 @@ rating_spectator2.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 photo_url2 = doc2.css('.thumbnail-img').map { |links| links['data-src'] }
 
 genre_links2 = doc2.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
-genres2 = genre_links2.select { |str| str.match?(/\A\p{L}+\z/) }
+genre2 = genre_links2.select { |str| str.match?(/\A\p{L}+\z/) }
 
 
 puts "création de la 1ère page de films"
@@ -334,21 +334,21 @@ title1.each_with_index do |title, index|
 end
 puts "finished creating first 15 movies"
 
-# puts "création de la 2ème page de films"
-# movies2 = []
-# title2.each_with_index do |title, index|
-#   movie = Item.new(
-#     name: title2,
-#     movie_director: director2[index],
-#     synopsis: clean_synopsis2[index],
-#     rating: rating_spectator2[index],
-#     photo_url: photo_url2[index],
-#     movie_genre: genres2[index]
-#   )
-#   if movie.save
-#     p "saved movie"
-#   end
-#   movies2 << movie
-# end
+puts "création de la 2ème page de films"
+movies2 = []
+title2.each_with_index do |title, index|
+  movie = Item.new(
+    name: title2,
+    movie_director: director2[index],
+    synopsis: clean_synopsis2[index],
+    rating: rating_spectator2[index],
+    photo_url: photo_url2[index],
+    movie_genre: genre2[index]
+  )
+  if movie.save
+    p "saved movie"
+  end
+  movies2 << movie
+end
 
 # puts "finished creating the last 15 movies"
