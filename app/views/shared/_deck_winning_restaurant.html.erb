@@ -5,6 +5,14 @@
     <div class="winner-card-info">
       <p><%= winner.item.name %></p>
       <p><%= winner.item.address %></p>
+      <div class="ratings">
+        <% winner.item.rating.round.times do  %>
+          <i class="fa fa-star rating-color"></i>
+          <% end %>
+          <% (5 - winner.item.rating.round).times do  %>
+            <i class='fa fa-star'></i>
+          <% end %>
+      </div>
     </div>
   </div>
   <br>
