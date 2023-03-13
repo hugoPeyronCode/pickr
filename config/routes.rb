@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :decks, only: [:index, :new, :create, :show, :destroy] do
     member do
+      get :progress
       get :close_vote
       put :hide
     end
