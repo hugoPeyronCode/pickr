@@ -275,22 +275,22 @@ rating_spectator1 = rating1.values_at(*indices1)
 #j'arrondis à l'entier supérieur
 rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
-photo_url1 = doc.css('.thumbnail-img').map { |links| links['data-src'] }
+photo_url1 = doc.css('.thumbnail-img').map { |links| links['src'] }
 
 #je récupère les genres qui sont mélangés avec les horaires et les dates. j'enlève les horaires et les dates
 genre_links1 = doc.css('.meta-body-info').map(&:text)
 genre1 = genre_links1.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
 
 
-url2 = 'https://www.allocine.fr/film/aucinema/'
+url2 = 'https://www.allocine.fr/film/aucinema/?page=2'
 html2 = URI.open(url2)
 doc2 = Nokogiri::HTML(html2)
 
 #je récupère les titres et je récupère un array. Pour éviter de prendre les bandes annonces des films à venir, je sélectionne les 15 premiers car il n'y a que 15 films par page
 title2 = doc2.css('.meta-title-link').map(&:text).first(15)
+# p title2
 
 director2 = doc2.css('.meta-body-direction a.blue-link').map(&:text)
-
 #je récupère les synopsis que je récupère en array, je supprime les balises \n qui sont les sauts de ligne
 synopsis2 = doc2.css('.synopsis .content-txt').map(&:text)
 clean_synopsis2 = synopsis2.map do |s|
@@ -308,11 +308,12 @@ rating_spectator2 = rating2.values_at(*indices1)
 #j'arrondis à l'entier supérieur
 rating_spectator2.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
+p rating_spectator2
 
-photo_url2 = doc2.css('.thumbnail-img').map { |links| links['data-src'] }
+photo_url2 = doc2.css('.thumbnail-img').map { |links| links['src'] }
 
-genre_links2 = doc2.css('.meta-body-info').text.strip.gsub(/(\d{1,2}\s\w+\s\d{4}|\d{1,2}h\s\d{1,2}min)/, '').split(/\n+/)
-genre2 = genre_links2.select { |str| str.match?(/\A\p{L}+\z/) }
+genre_links2 = doc2.css('.meta-body-info').map(&:text)
+clean_genre2 = genre_links2.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
 
 
 puts "création de la 1ère page de films"
@@ -321,13 +322,14 @@ movies = []
 title1.each_with_index do |title, index|
   movie = Item.new(
     name: title,
+    movie_genre: genre1[index],
     movie_director: director1[index],
     synopsis: clean_synopsis1[index],
     rating: rating_spectator1[index],
     photo_url: photo_url1[index],
-    movie_genre: genre1[index]
+    item_type: "Movie"
   )
-  if movie.save
+  if movie.save!
     p "saved movie"
   end
   movies << movie
@@ -336,19 +338,20 @@ puts "finished creating first 15 movies"
 
 puts "création de la 2ème page de films"
 movies2 = []
-title2.each_with_index do |title, index|
+title2.each_with_index do |title2, index|
   movie = Item.new(
     name: title2,
+    movie_genre: clean_genre2[index],
     movie_director: director2[index],
     synopsis: clean_synopsis2[index],
     rating: rating_spectator2[index],
     photo_url: photo_url2[index],
-    movie_genre: genre2[index]
+    item_type: "Movie"
   )
-  if movie.save
+  if movie.save!
     p "saved movie"
   end
   movies2 << movie
 end
 
-# puts "finished creating the last 15 movies"
+puts "finished creating the last 15 movies"

@@ -22,16 +22,18 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
     @deck.user = current_user
+    @deck.item_type = params[:item_type]
     @deck.status = "Pending"
     if @deck.save!
 
-      if params[:deck] == "Restaurants"
+      if params[:item_type] == "Restaurant"
         @items = Item.near(@deck.address, 10).limit(10)
         @items = @items.where("price_range >= ?", @deck.price_range)
         @items = @items.where(rating: @deck.rating)
-      elsif params[:deck] == "Films"
+      elsif params[:item_type] == "Movie"
+        @items = Item.where(item_type: "Movie")
         @items = @items.where(rating: @deck.rating)
-        @items = @items.where(movie_genre: @deck.movie_genre)
+        @items = @items.where(movie_genre: @deck.movie_genre) if params[:deck][:movie_genre] != ""
       end
       @items.each do |item|
         deck_item = DeckItem.new(deck: @deck, item: item)
