@@ -1,20 +1,18 @@
-<div class="container">
-  <h2 ">And the restaurant for the <%= @deck.name %> event is.... </h2>
-  <div class="container">
-    <h3>
-    <strong><%= winner.item.name %> </strong>
-    </h3>
-  </div>
+<div class="page-wrapper">
+  <h2> <strong> And the winner is ... </strong> </h2>
 
-  <div class="container">
-    <%= winner.item.address %>
+  <div class="winner-card" style="background-image: url('<%= winner.item.photo_url %>')">
+    <div class="winner-card-info">
+      <p><%= winner.item.name %></p>
+      <p><%= winner.item.address %></p>
+    </div>
   </div>
-
-  <div class="container">
-       <img class="winner-image", src="<%= winner.item.photo_url %>"/>
+  <br>
+  <div class="emoji-container">
+    <% 10.times do  %>
+        <div class="emoji" style="top: <%= rand(0..100) %>vh; left: <%= rand(0..100) %>vw;"> <h1>🎉</h1></div>
+    <%end %>
   </div>
-
-  <p>Share the result with your friends</p>
 
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
     <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
