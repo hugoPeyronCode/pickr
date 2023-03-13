@@ -85,6 +85,7 @@ $green: #B1DA96;
       height: 100%;
       object-fit: cover;
       border-radius: 0.8rem;
+      filter: brightness(0.7);
     }
     &__name {
       font-size: 1.6rem;

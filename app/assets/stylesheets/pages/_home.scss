@@ -6,6 +6,8 @@ body.home-page {
   background-size: cover;
   background-position: center;
   position: relative;
+  background-image: url('Union.png');
+  background-size: cover;
 }
 
 div.home-page {
@@ -23,7 +25,11 @@ h2.home-page {
 }
 
 h1.home-page{
-  color: white;
+  color: rgb(255, 255, 255);
+}
+
+a {
+  color: rgb(39, 111, 255);
 }
 
 a.btn-login {
