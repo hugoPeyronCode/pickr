@@ -106,16 +106,15 @@ clean_synopsis1 = synopsis1.map do |s|
   s.gsub("\n","")
 end
 
-#je récupère les rating, à chaque fois il y en a 3 pour chaque film (presse, spectateurs, mes amis sur allociné).
+
 rating1 = doc.css('.stareval-note').map(&:text)
-#les avis d'amis étant toujours vides, je les supprime
 rating_cleaning1 = rating1.delete("--")
-#le cleaning ne doit pas être appelé car il retourne seulement la string vide
-#je sélectionne les indices impairs qui correspondent aux avis des spectateurs
 indices1 = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
 rating_spectator1 = rating1.values_at(*indices1)
-#j'arrondis à l'entier supérieur
+
 rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
+
+p rating_spectator1
 
 photo_url1 = doc.css('.thumbnail-img').map do |links|
   if links['src'].match?(/\bdata/)

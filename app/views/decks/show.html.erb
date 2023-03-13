@@ -1,14 +1,16 @@
-<% if @deck.status == "Closed"  %>
-  <%= render "shared/deck_winning_item", winner: @deck_winning_item, decks: @decks %>
-
+<% if @deck.status == "Closed" && @deck.item_type == "Restaurant" %>
+  <%= render "shared/deck_winning_restaurant", winner: @deck_winning_item, decks: @decks %>
+<% elsif @deck.status == "Closed" && @deck.item_type == "Movie" %>
+  <%= render "shared/deck_winning_movie", winner: @deck_winning_item, decks: @decks %>
 <% else  %>
   <div class="container d-flex flex-column align-items-center">
       <h1> <%= @deck.name %> </h1>
   </div>
-
   <%= render "shared/progress-bar", completed_percent: @completed_percent%>
-
-  <%= render "shared/card-swipe", deck_items: @deck_item %>
-  <%= render "shared/message-deck-fin", deck: @deck%>
-
+  <% if @deck.item_type == "Restaurant"%>
+    <%= render "shared/card-swipe-restaurant", deck_items: @deck_item %>
+  <% elsif @deck.item_type == "Movie"%>
+    <%= render "shared/card-swipe-movie", deck_items: @deck_item %>
+  <% end %>
+  <%=  render "shared/message-deck-fin", deck: @deck%>
 <% end %>

@@ -34,10 +34,8 @@ class DecksController < ApplicationController
       if params[:item_type] == "Restaurant"
         @items = Item.near(@deck.address, 10).limit(10)
         @items = @items.where("price_range >= ?", @deck.price_range)
-        @items = @items.where(rating: @deck.rating)
       elsif params[:item_type] == "Movie"
         @items = Item.where(item_type: "Movie")
-        @items = @items.where(rating: @deck.rating)
         @items = @items.where(movie_genre: @deck.movie_genre) if params[:deck][:movie_genre] != ""
       end
       @items.each do |item|
@@ -49,7 +47,6 @@ class DecksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   def show
     @deck = Deck.find(params[:id])
