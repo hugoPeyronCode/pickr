@@ -10,19 +10,19 @@
             <%= f.input :address, placeholder: "which neighbourhood?" %>
             <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
             <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
-            <%= f.submit "Validate", class: "btn btn-primary" %>
+            <%= f.submit "Validate", class: "create-btn" %>
           <% end %>
         <% elsif params[:deck] == "Movies" %>
           <%= simple_form_for @deck do |f| %>
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :address, placeholder: "which neighbourhood?" %>
-              <%= f.submit "Validate", class: "btn btn-primary" %>
+              <%= f.submit "Validate", class: "create-btn" %>
             <% end %>
         <% else %>
           <%= simple_form_for @deck do |f| %>
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
-              <%= f.submit "Validate", class: "btn btn-primary" %>
+              <%= f.submit "Validate", class: "create-btn" %>
             <% end %>
         <% end %>
       </div>

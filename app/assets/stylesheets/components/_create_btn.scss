@@ -25,7 +25,7 @@
 }
 
 .create-btn:hover {
-  background-color: #a3a3a3;
+  background-color: #a3a3a3 !important;
   cursor: pointer;
 }
 
@@ -36,5 +36,5 @@ a.create-btn:hover {
 
 .create-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000000;
 }
