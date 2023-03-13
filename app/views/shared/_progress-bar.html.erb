@@ -1,0 +1,9 @@
+ <div class="progress" data-controller="progress-bar" data-progress-bar-deck-id-value="<%= @deck.id%>">
+    <div class="progress-bar" role="progressbar"
+    style="width: <%= completed_percent %>%;"
+    aria-valuenow="<%= completed_percent %>"
+    aria-valuemin="0" aria-valuemax="100"
+    >
+      <%= completed_percent %>%
+    </div>
+  </div>
