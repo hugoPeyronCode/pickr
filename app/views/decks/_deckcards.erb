@@ -12,14 +12,9 @@
             <% end %>
           </p>
           <p> 📅 <%= deck.created_at.strftime("%d %B %Y")  %></p>
-          <p> 🗳️ <%= deck.deck_items.joins(:votes).count %></p>
-          <p> 🏆
-            <% if deck.most_voted_deck_item %>
-              <%= deck.most_voted_deck_item.item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes)
-            <% else %>
-              No winner yet
-            <% end %>
-          </p>
+          <p> 🗳️ <%= deck.votes.count %> total votes</p>
+          <p> 🤼 <%= deck.voters.count %> person(s) voted </p>
+
           <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
             <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(deck) %>" readonly>
             <div class="bg"></div>
