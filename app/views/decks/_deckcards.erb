@@ -15,7 +15,7 @@
           <p> 🗳️ <%= deck.votes.count %> total votes</p>
           <p> 🤼 <%= deck.voters.count %> person(s) voted </p>
           <% if deck.status == "Closed" %>
-          <p> 👑 <%= deck.most_voted_deck_item.item.name %>  </p>
+          <p> 👑 <%= deck.most_voted_deck_item.item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes) </p>
           <% end %>
 
           <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
