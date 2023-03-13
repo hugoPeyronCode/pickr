@@ -4,12 +4,18 @@
 
 <% else  %>
 
-  <div class="container d-flex flex-column align-items-center">
+<div class="container d-flex flex-column align-items-center">
     <h1> <%= @deck.name %> </h1>
-  </div>
+</div>
 
+<div class="progres-bar">
+  <div class="progress-bar-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+
+  <%= render "shared/progress-bar", deck: @deck %>
   <%= render "shared/card-swipe", deck_items: @deck_item %>
 
-  <%=  render "shared/message-deck-fin", deck: @deck%>
+  <%= render "shared/message-deck-fin", deck: @deck%>
 
 <% end %>

@@ -11,6 +11,12 @@ class DecksController < ApplicationController
      # here i want to see all the decks that I created or that I've voted into.
   end
 
+  def progress
+      @deck = Deck.find(params[:id])
+      @completed_percent = (@deck.deck_items.select{ |item| item.votes.any? }.size.to_f / @deck.deck_items.size.to_f * 100).round
+      render json: { completed_percent: @completed_percent }
+  end
+
   def choose
   end
 
