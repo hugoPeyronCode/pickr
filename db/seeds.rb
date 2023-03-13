@@ -111,11 +111,11 @@ rating1 = doc.css('.stareval-note').map(&:text)
 #les avis d'amis étant toujours vides, je les supprime
 rating_cleaning1 = rating1.delete("--")
 #le cleaning ne doit pas être appelé car il retourne seulement la string vide
-#je sélectionne les indices impairs qui correspondent aux avis des spectateurs
-indices1 = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
-rating_spectator1 = rating1.values_at(*indices1)
+#je sélectionne les indices impairs qui correspondent à l'avis presse
+indices1 = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+rating_press1 = rating1.values_at(*indices1)
 #j'arrondis à l'entier supérieur
-rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
+rating_press1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
 photo_url1 = doc.css('.thumbnail-img').map do |links|
   if links['src'].match?(/\bdata/)
@@ -150,10 +150,10 @@ rating2 = doc2.css('.stareval-note').map(&:text)
 rating_cleaning2 = rating2.delete("--")
 #le cleaning ne doit pas être appelé car il retourne seulement la string vide
 #je sélectionne les indices impairs qui correspondent aux avis des spectateurs
-indices2 = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
-rating_spectator2 = rating2.values_at(*indices1)
+indices2 = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+rating_press2 = rating2.values_at(*indices1)
 #j'arrondis à l'entier supérieur
-rating_spectator2.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
+rating_press2.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
 photo_url2 = doc2.css('.thumbnail-img').map do |links|
   if links['src'].match?(/\bdata/)
@@ -176,7 +176,7 @@ title1.each_with_index do |title, index|
     movie_genre: genre1[index],
     movie_director: director1[index],
     synopsis: clean_synopsis1[index],
-    rating: rating_spectator1[index],
+    rating: rating_press1[index],
     photo_url: photo_url1[index],
     item_type: "Movie"
   )
@@ -195,7 +195,7 @@ title2.each_with_index do |title2, index|
     movie_genre: clean_genre2[index],
     movie_director: director2[index],
     synopsis: clean_synopsis2[index],
-    rating: rating_spectator2[index],
+    rating: rating_press2[index],
     photo_url: photo_url2[index],
     item_type: "Movie"
   )
