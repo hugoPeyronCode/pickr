@@ -3,27 +3,22 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="deck-form">
         <h3>Create a new deck</h3>
-        <% if params[:deck] == "Restaurants" %>
-
-          <%= simple_form_for @deck do |f| %>
+        <%= simple_form_for @deck do |f| %>
+          <%= hidden_field_tag :item_type, params[:deck] %>
+          <% if params[:deck] == "Restaurant" %>
             <%= f.input :name, placeholder: "name of your deck" %>
             <%= f.input :address, placeholder: "which neighbourhood?" %>
             <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
-            <%= f.input :rating, collection: (1..5).to_a, label: "notes recherchées", input_html: {data: {controller: "star-rating"}} %>
-            <%= f.submit "Validate", class: "create-btn" %>
-          <% end %>
-        <% elsif params[:deck] == "Movies" %>
-          <%= simple_form_for @deck do |f| %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "rating", input_html: {data: {controller: "star-rating"}} %>
+          <% elsif params[:deck] == "Movie" %>
               <%= f.input :name, placeholder: "name of your deck" %>
-              <%= f.input :address, placeholder: "which neighbourhood?" %>
-              <%= f.submit "Validate", class: "create-btn" %>
-            <% end %>
-        <% else %>
-          <%= simple_form_for @deck do |f| %>
+              <%= f.input :movie_genre, collection: ["Drame", "Comédie", "Thriller", "Fantastique", "Romance", "Horreur"] %>
+              <%= f.input :rating, collection: (1..5).to_a, label: "public rating", input_html: {data: {controller: "star-rating"}} %>
+          <% else %>
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
-              <%= f.submit "Validate", class: "create-btn" %>
-            <% end %>
+           <% end %>
+          <%= f.submit "Validate", class: "create-btn" %>
         <% end %>
       </div>
     </div>
