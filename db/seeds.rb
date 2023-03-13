@@ -275,8 +275,14 @@ rating_spectator1 = rating1.values_at(*indices1)
 #j'arrondis à l'entier supérieur
 rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
-photo_url1 = doc.css('.thumbnail-img').map { |links| links['src'] }
-
+photo_url1 = doc.css('.thumbnail-img').map do |links|
+  if links['src'].match?(/\bdata/)
+    links['data-src']
+  else
+    links['src']
+  end
+end
+p photo_url1
 #je récupère les genres qui sont mélangés avec les horaires et les dates. j'enlève les horaires et les dates
 genre_links1 = doc.css('.meta-body-info').map(&:text)
 genre1 = genre_links1.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
@@ -308,9 +314,13 @@ rating_spectator2 = rating2.values_at(*indices1)
 #j'arrondis à l'entier supérieur
 rating_spectator2.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
-p rating_spectator2
-
-photo_url2 = doc2.css('.thumbnail-img').map { |links| links['src'] }
+photo_url2 = doc2.css('.thumbnail-img').map do |links|
+  if links['src'].match?(/\bdata/)
+    links['data-src']
+  else
+    links['src']
+  end
+end
 
 genre_links2 = doc2.css('.meta-body-info').map(&:text)
 clean_genre2 = genre_links2.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
