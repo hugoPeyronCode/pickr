@@ -1,6 +1,6 @@
 <% if @deck.status == "Closed"  %>
 
-  <%= render "shared/deck_winning_item", winner: @deck_winning_item %>
+  <%= render "shared/deck_winning_item", winner: @deck_winning_item, decks: @decks %>
 
 <% else  %>
 
