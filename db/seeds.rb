@@ -15,7 +15,6 @@ User.destroy_all
 Item.destroy_all
 Deck.destroy_all
 
-
 puts "Creating users..."
 guillaume = User.create!(username: "Guillaume", email: "guillaume@hello.fr", password: "123456", phone_number: "07 77 72 64 44")
 audrey = User.create!(username: "Audrey", email: "audrey@hello.fr", password: "123456", phone_number: "06 32 45 67 89")
@@ -30,137 +29,6 @@ restaurantdeck3 = Deck.create!(name: "new dej Schwiper", status: "Closed", user:
 # restaurantdeckOber = Deck.create!(name: "hugo4-rest-230304", status: "Pending", user: hugo, deck_type: "Restaurant")
 puts "Decks created"
 
-# puts "Creating 5 Restaurants for Pending deck..."
-# item1 = Item.create!(
-#   name: "Sürpriz - Berliner Kebab",
-#   item_url: "https://www.surpriz.paris/",
-#   address: "110 Rue Oberkampf, 75011 Paris",
-#   rating: 4.7,
-#   price_range: 1,
-#   item_type: "Restaurant",
-#   photo_url: "https://storage.googleapis.com/mon-resto-halal/restaurants/ce93030e-dbe8-4357-9cce-c630fc628c75/thumb@1024_e1df9f14-b6ba-453c-85bc-ac6dab538cf8.jpg"
-# )
-# item2 = Item.create!(
-#   name: "Sukhumvit Thaï Street Food Paris 11",
-#   item_url: "https://www.instagram.com/sukhumvit.paris11/",
-#   address: "88 Rue Oberkampf, 75011 Paris",
-#   rating: 4,
-#   price_range: 0,
-#   item_type: "Restaurant",
-#   photo_url: "https://lh3.googleusercontent.com/p/AF1QipPX6bNfUxmIoN4atu0Y8HavtfYQJIDX-T_h3wLh=w1080-h608-p-no-v0"
-# )
-# item3 = Item.create!(
-#   name: "Boulangerie Chambelland",
-#   item_url: "https://chambelland.com/",
-#   address: "14 Rue Ternaux, 75011 Paris",
-#   rating: 4,
-#   price_range: 2,
-#   item_type: "Restaurant",
-#   photo_url: "https://www.ixelles.city/_custom_storage/collections/137/chambelland_20190517_73670.jpg"
-# )
-# item4 = Item.create!(
-#   name: "Açaï & You - St Ambroise (Brunch & Bowls Take away)",
-#   item_url: "http://www.acaiandyou.com/",
-#   address: "28 Rue Saint-Ambroise, 75011 Paris",
-#   rating: 5,
-#   price_range: 0,
-#   item_type: "Restaurant",
-#   photo_url: "https://meilleur-brunch.com/wp-content/uploads/2021/11/acaiandyou2_5_1125.jpeg"
-# )
-# item5 = Item.create!(
-#   name: "Scaria",
-#   item_url: "http://scaria.fr/",
-#   address: "88 Ave Parmentier, 75011 Paris",
-#   rating: 5,
-#   price_range: 2,
-#   item_type: "Restaurant",
-#   photo_url: "https://v2cdn1.centralappstatic.com/cache?url=gwBZASxXb5aRoDFLzKC_tPBNZW_8gQAU5teZacA5PGYUt85YiYjuwWQuzoCO6xpay10_CU97c2dAJQNlY4503SZS4vIwZ9RFzYgJFjRZotMk34y0sy3msnQ4KYwwffRJeTbKdDk7Fdx3sYrM4xrIVrSSgqBwTIv4p2qbB7JdM9tQDBUa0ga5PDssxBpn8JZYsdA_IZMgn4x1bja8ZF-Psbs8lgYfUpK1EbQ-YwGP8stHpZ_qv6rPXNNlsd5sDmWuWes5K0gCIhvrqRKLHca1hzTWEWmKXjGq9-aLuh356lLBilzu9Gh470zct1Wl8_3v5XWOWoFpGm_MBc3wLVEcAQXDrIPayZGkOSO8gcqQDH0E2FdN9rv_ClzEwuSffMPp62QJHRCgbSPZWONnnxuK6TZQK42wHwu5-aCw8bvkZt5LuA"
-# )
-# puts "Restaurants created"
-
-# puts "Creating 5 Restaurants for Future deck..."
-# item6 = Item.create!(
-#   name: "Future Sürpriz - Berliner Kebab",
-#   item_url: "https://www.surpriz.paris/",
-#   address: "110 Rue Oberkampf, 75011 Paris",
-#   rating: 4.7,
-#   price_range: 1,
-#   item_type: "Restaurant",
-#   photo_url: "https://storage.googleapis.com/mon-resto-halal/restaurants/ce93030e-dbe8-4357-9cce-c630fc628c75/thumb@1024_e1df9f14-b6ba-453c-85bc-ac6dab538cf8.jpg"
-# )
-# item7 = Item.create!(
-#   name: "Future Sukhumvit Thaï Street Food Paris 11",
-#   item_url: "https://www.instagram.com/sukhumvit.paris11/",
-#   address: "88 Rue Oberkampf, 75011 Paris",
-#   rating: 4.7,
-#   price_range: 0,
-#   item_type: "Restaurant",
-#   photo_url: "https://lh3.googleusercontent.com/p/AF1QipPX6bNfUxmIoN4atu0Y8HavtfYQJIDX-T_h3wLh=w1080-h608-p-no-v0"
-# )
-# item8 = Item.create!(
-#   name: "Future Boulangerie Chambelland",
-#   item_url: "https://chambelland.com/",
-#   address: "14 Rue Ternaux, 75011 Paris",
-#   rating: 4.4,
-#   price_range: 2,
-#   item_type: "Restaurant",
-#   photo_url: "https://www.ixelles.city/_custom_storage/collections/137/chambelland_20190517_73670.jpg"
-# )
-# item9 = Item.create!(
-#   name: "Future Açaï & You - St Ambroise (Brunch & Bowls Take away)",
-#   item_url: "http://www.acaiandyou.com/",
-#   address: "28 Rue Saint-Ambroise, 75011 Paris",
-#   rating: 4.8,
-#   price_range: 0,
-#   item_type: "Restaurant",
-#   photo_url: "https://meilleur-brunch.com/wp-content/uploads/2021/11/acaiandyou2_5_1125.jpeg"
-# )
-# item10 = Item.create!(
-#   name: "Future Scaria",
-#   item_url: "http://scaria.fr/",
-#   address: "88 Ave Parmentier, 75011 Paris",
-#   rating: 4.6,
-#   price_range: 2,
-#   item_type: "Restaurant",
-#   photo_url: "https://v2cdn1.centralappstatic.com/cache?url=gwBZASxXb5aRoDFLzKC_tPBNZW_8gQAU5teZacA5PGYUt85YiYjuwWQuzoCO6xpay10_CU97c2dAJQNlY4503SZS4vIwZ9RFzYgJFjRZotMk34y0sy3msnQ4KYwwffRJeTbKdDk7Fdx3sYrM4xrIVrSSgqBwTIv4p2qbB7JdM9tQDBUa0ga5PDssxBpn8JZYsdA_IZMgn4x1bja8ZF-Psbs8lgYfUpK1EbQ-YwGP8stHpZ_qv6rPXNNlsd5sDmWuWes5K0gCIhvrqRKLHca1hzTWEWmKXjGq9-aLuh356lLBilzu9Gh470zct1Wl8_3v5XWOWoFpGm_MBc3wLVEcAQXDrIPayZGkOSO8gcqQDH0E2FdN9rv_ClzEwuSffMPp62QJHRCgbSPZWONnnxuK6TZQK42wHwu5-aCw8bvkZt5LuA"
-# )
-# puts "Restaurants created"
-
-# puts "Creation de Deck_Items"
-# deck_item1 = DeckItem.create!(item: item1, deck: restaurantdeck1)
-# deck_item1 = DeckItem.create!(item: item2, deck: restaurantdeck1)
-# deck_item1 = DeckItem.create!(item: item3, deck: restaurantdeck1)
-# deck_item1 = DeckItem.create!(item: item4, deck: restaurantdeck1)
-# deck_item1 = DeckItem.create!(item: item5, deck: restaurantdeck1)
-# puts "finished"
-
-
-######### METHODO AVEC GOOGLE API ##########
-
-# requête coordonnées:
-# https://maps.googleapis.com/maps/api/geocode/json?
-# address=Oberkampf
-# &components=country:FR
-# &key=#{ENV["GOOGLE_API_KEY"]}
-
-# requête nearby:
-# https://maps.googleapis.com/maps/api/place/nearbysearch/json
-# ?location=48.8700698%2C2.3852427
-# &radius=1500
-# &maxprice=2
-# &type=restaurant
-# &key=#{ENV["GOOGLE_API_KEY"]}
-
-# requête photo:
-# https://maps.googleapis.com/maps/api/place/photo?
-# maxwidth=1200
-# &photo_reference=[ICI LE PHOTO REFERENCE ID]
-# &key=#{ENV["GOOGLE_API_KEY"]}
-
-# requête opening hours:
-# https://maps.googleapis.com/maps/api/place/details/json?
-# place_id=[ICI LA PLACE ID]
-# &fields=name%2Crating%2Cformatted_phone_number&key=#{ENV["GOOGLE_API_KEY"]}
 
 #methode pour récup une URL
 def final_redirection_url(url)
@@ -222,32 +90,6 @@ restaus_nearby = json_response_nearby.dig("results").map do |result|
   item
 end
 
-# puts "Creation des Deck_items du restaurantdeckOber"
-# restaus_nearby.each do |item|
-#   DeckItem.create!(item: item, deck: restaurantdeckOber)
-# end
-# puts "finished"
-
-
-# parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
-#   "maxwidth=1200" \
-#   "&photo_reference=#{json_response_nearby.dig("results", index, "photos", 0, "photo_reference")}" \
-#   "&key=#{ENV["GOOGLE_API_KEY"]}")
-#   json_response_photo_url = JSON.parse(URI.open(parsed_photo_url).read)
-
-# pour test :
-# parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
-#   "maxwidth=1200" \
-#   "&photo_reference=AfLeUgP8XJVAbfekkXIr_q4ijaTbX95EI9wcxKkIur6Djyt1XTa7ml8rlFcTuU5kTikueVn2GseRPSZheTuxjbSaotBGOYjZWWwXYxNWrVPX1iRKuQxe2hynaNN8G-JJg-nGUtp61slpHV2sH6ovzo1ZG5rqH6Gb8btqL1kDX6ikWDJMEBJP" \
-#   "&key=#{ENV["GOOGLE_API_KEY"]}")
-#   json_response_photo_url = JSON.parse(URI.open(parsed_photo_url).read)
-
-# parsed_item_url = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
-#   "place_id=#{json_response_nearby.dig("results", index, "place_id")}" \
-#   "&key=#{ENV["GOOGLE_API_KEY"]}")
-#   json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
-#   => item_url: "#{json_response_item_url.dig("results", index, "website")}"
-
 url = 'https://www.allocine.fr/film/aucinema/'
 html = URI.open(url)
 doc = Nokogiri::HTML(html)
@@ -282,7 +124,6 @@ photo_url1 = doc.css('.thumbnail-img').map do |links|
     links['src']
   end
 end
-p photo_url1
 #je récupère les genres qui sont mélangés avec les horaires et les dates. j'enlève les horaires et les dates
 genre_links1 = doc.css('.meta-body-info').map(&:text)
 genre1 = genre_links1.map { |s| s[/\b\p{Lu}\p{L}*+\b/] }
@@ -340,7 +181,7 @@ title1.each_with_index do |title, index|
     item_type: "Movie"
   )
   if movie.save!
-    p "saved movie"
+  p "Movie #{movie.name} created"
   end
   movies << movie
 end
@@ -359,7 +200,7 @@ title2.each_with_index do |title2, index|
     item_type: "Movie"
   )
   if movie.save!
-    p "saved movie"
+    p "Movie #{movie.name} created"
   end
   movies2 << movie
 end
