@@ -29,6 +29,11 @@ restaurantdeck3 = Deck.create!(name: "new dej Schwiper", status: "Closed", user:
 # restaurantdeckOber = Deck.create!(name: "hugo4-rest-230304", status: "Pending", user: hugo, deck_type: "Restaurant")
 puts "Decks created"
 
+# requête opening hours:
+# https://maps.googleapis.com/maps/api/place/details/json?
+# place_id=[ICI LA PLACE ID]
+# &fields=name%2Crating%2Cformatted_phone_number&key=#{ENV["GOOGLE_API_KEY"]}
+
 
 #methode pour récup une URL
 def final_redirection_url(url)
@@ -40,10 +45,38 @@ def final_redirection_url(url)
   response["Location"]
 end
 
+def create_nearby_items(json_response_nearby)
+  json_response_nearby.dig("results").each do |result|
+
+    parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
+      "maxwidth=1200" \
+      "&photo_reference=#{result.dig("photos", 0, "photo_reference")}" \
+      "&key=#{ENV["GOOGLE_API_KEY"]}")
+      json_response_photo_url = final_redirection_url(parsed_photo_url)
+
+    parsed_item_url = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
+      "place_id=#{result.dig("place_id")}" \
+      "&key=#{ENV["GOOGLE_API_KEY"]}")
+      json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
+      item_url = json_response_item_url.dig("results", 0, "website")
+
+    item = Item.create!(
+      name: result.dig("name"),
+      item_url: item_url,
+      address: result.dig("vicinity"),
+      rating: result.dig("rating") ? result.dig("rating").round(0).to_i : nil,
+      price_range: result.dig("price_level"),
+      item_type: "Restaurant",
+      photo_url: json_response_photo_url
+    )
+    puts "Restaurant #{item.name} created"
+  end
+end
+
 # steps dans le terminal:
 quartier = "Oberkampf"
 radius = "500"
-price = "2"
+price = ""
 
 #1 obtention des coordonnées du quartier
 url_coord = URI("https://maps.googleapis.com/maps/api/geocode/json?" \
@@ -63,32 +96,21 @@ url_nearby = URI("https://maps.googleapis.com/maps/api/place/nearbysearch/json" 
 "&key=#{ENV["GOOGLE_API_KEY"]}")
 json_response_nearby = JSON.parse(URI.open(url_nearby).read)
 
-restaus_nearby = json_response_nearby.dig("results").map do |result|
-
-  parsed_photo_url = URI("https://maps.googleapis.com/maps/api/place/photo?" \
-    "maxwidth=1200" \
-    "&photo_reference=#{result.dig("photos", 0, "photo_reference")}" \
+create_nearby_items(json_response_nearby)
+while json_response_nearby.dig("next_page_token")
+  url_nearby = URI("https://maps.googleapis.com/maps/api/place/nearbysearch/json" \
+    "?pagetoken=#{json_response_nearby.dig("next_page_token")}" \
+    "&location=#{lat}%2C#{lng}" \
+    "&radius=#{radius}" \
+    "&maxprice=#{price}" \
+    "&type=restaurant" \
     "&key=#{ENV["GOOGLE_API_KEY"]}")
-    json_response_photo_url = final_redirection_url(parsed_photo_url)
-
-  parsed_item_url = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
-    "place_id=#{result.dig("place_id")}" \
-    "&key=#{ENV["GOOGLE_API_KEY"]}")
-    json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
-    item_url = json_response_item_url.dig("results", 0, "website")
-
-  item = Item.create!(
-    name: result.dig("name"),
-    item_url: item_url,
-    address: result.dig("vicinity"),
-    rating: result.dig("rating").round(0).to_i,
-    price_range: result.dig("price_level"),
-    item_type: "Restaurant",
-    photo_url: json_response_photo_url
-  )
-  puts "Restaurant #{item.name} created"
-  item
+  json_response_nearby = JSON.parse(URI.open(url_nearby).read)
+  create_nearby_items(json_response_nearby)
 end
+
+
+########"CINEMA##########"
 
 url = 'https://www.allocine.fr/film/aucinema/'
 html = URI.open(url)
