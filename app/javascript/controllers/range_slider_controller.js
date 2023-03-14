@@ -13,7 +13,7 @@ export default class extends Controller {
   change(event) {
 
     var price = parseInt(event.currentTarget.value);
-    var euros = '€'.repeat(price);
+    var euros = '€'.repeat(price + 1);
     this.euroTarget.innerText = euros;
   }
 }

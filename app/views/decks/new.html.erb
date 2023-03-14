@@ -8,7 +8,7 @@
           <% if params[:deck] == "Restaurant" %>
             <%= f.input :name, placeholder: "name of your deck" %>
             <%= f.input :address, placeholder: "which neighbourhood?" %>
-            <%= f.input :price_range, input_html: { type: 'range', min: 1, max: 5, step: 1, class: 'form-range', id: 'customRange3', data: { action: "input->range-slider#change"} } %>
+            <%= f.input :price_range, input_html: { type: 'range', min: 0, max: 4, step: 1, class: 'form-range', id: 'customRange3', data: { action: "input->range-slider#change"} } %>
             <p>Selected value: <span class="fw-bold" data-range-slider-target="euro">€€€</span></p>
 
           <% elsif params[:deck] == "Movie" %>
