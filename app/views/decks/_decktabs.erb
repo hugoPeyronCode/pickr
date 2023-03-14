@@ -1,11 +1,7 @@
 <div class="container">
   <div class="row">
 
-      <div class="create-btn-container">
-            <%= link_to 'New list', decks_choose_path, class:'create-btn' %>
-      </div>
-
-    <div class="tab deck-tab">
+    <div class="tab deck-tab d-flex justify-content-around">
       <button class="tablinks tab_btn all" onclick="openTab(event, 'mine')" id="defaultOpen">All</button>
       <button class="tablinks tab_btn pending" onclick="openTab(event, 'pending')">Pending</button>
       <button class="tablinks tab_btn closed" onclick="openTab(event, 'done')">Closed</button>
@@ -22,6 +18,7 @@
       <div id="done" class="tabcontent">
         <%= render partial: 'decks/deckcards', locals: {decks: @closed_decks} %>
       </div>
+  </div>
 </div>
 
 <script>

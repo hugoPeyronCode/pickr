@@ -1,0 +1,43 @@
+<div class="swiper" data-controller="swipe coordinates">
+  <div class="swiper__content">
+    <div class="swiper__card-cont">
+      <% @deck_items.each do |deck_item| %>
+        <div class="swiper__card" data-swipe-target="card" data-id="<%= deck_item.id %>">
+          <div class="swiper__card__content">
+            <div class="swiper__card__content_top">
+             <%# La partie du haut de la carte %>
+            </div>
+            <img src= <%=deck_item.item.photo_url %> class="swiper__card__img" />
+            <div class="swiper__card__content_bottom">
+              <p class="swiper__card__name">
+              <strong><%= deck_item.item.name %></strong>
+              </p>
+               <div class="card-item-pricing">
+                <% (deck_item.item.price_range + 1).times do%>
+                €
+                <% end %>
+                </div>
+              <p class="swiper__card__distance">
+                <i class="fa-solid fa-location-dot pe-1"> </i><%= deck_item.item.address %>
+                <div class="ratings">
+                <% deck_item.item.rating.round.times do  %>
+                  <i class="fa fa-star rating-color"></i>
+                  <% end %>
+                  <% (5 - deck_item.item.rating.round).times do  %>
+                    <i class='fa fa-star'></i>
+                  <% end %>
+                </div>
+              </p>
+
+            </div>
+          </div>
+          <div class="swiper__card__choice m--reject">
+          </div>
+          <div class="swiper__card__choice m--like">
+          </div>
+          <div class="swiper__card__drag">
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

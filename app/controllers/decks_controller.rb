@@ -1,14 +1,19 @@
 class DecksController < ApplicationController
   def index
-     @decks = Deck.all
-     @all_my_decks = Deck.joins(:deck_items).joins(:votes).where("decks.user_id = ? OR votes.user_id = ?", current_user.id, current_user.id).distinct
-     @my_decks = @all_my_decks.where.not(status: "Hidden").order(created_at: :desc)
-     @pending_decks = @my_decks.where(status: "Pending").order(created_at: :desc)
-     @closed_decks = @my_decks.all.where(status: "Closed").order(created_at: :desc)
-     @hidden_decks = @my_decks.all.where(status: "Hidden").order(created_at: :desc)
-     # @my_decks = Deck.all.where(user_id: current_user.id.to_s)
+    @decks = Deck.all
+    @all_my_decks = Deck.joins(:deck_items).joins(:votes).where("decks.user_id = ? OR votes.user_id = ?", current_user.id, current_user.id).distinct
+    @my_decks = @all_my_decks.where.not(status: "Hidden").order(created_at: :desc)
+    @pending_decks = @my_decks.where(status: "Pending").order(created_at: :desc)
+    @closed_decks = @my_decks.all.where(status: "Closed").order(created_at: :desc)
+    @hidden_decks = @my_decks.all.where(status: "Hidden").order(created_at: :desc)
+  end
 
-     # here i want to see all the decks that I created or that I've voted into.
+  def progress
+    @user_id = current_user.id
+    @deck = Deck.find(params[:id])
+    @completed_percent =
+      (@deck.deck_items.select{ |deck_item| deck_item.votes.where(user: current_user).any? }.size / @deck.deck_items.size.to_f * 100).round
+    render json: { completed_percent: @completed_percent }
   end
 
   def choose
@@ -29,10 +34,8 @@ class DecksController < ApplicationController
       if params[:item_type] == "Restaurant"
         @items = Item.near(@deck.address, 10).limit(10)
         @items = @items.where("price_range >= ?", @deck.price_range)
-        @items = @items.where(rating: @deck.rating)
       elsif params[:item_type] == "Movie"
         @items = Item.where(item_type: "Movie")
-        @items = @items.where(rating: @deck.rating)
         @items = @items.where(movie_genre: @deck.movie_genre) if params[:deck][:movie_genre] != ""
       end
       @items.each do |item|
@@ -44,7 +47,6 @@ class DecksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   def show
     @deck = Deck.find(params[:id])
