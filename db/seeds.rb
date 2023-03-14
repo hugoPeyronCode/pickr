@@ -16,10 +16,40 @@ Item.destroy_all
 Deck.destroy_all
 
 puts "Creating users..."
-guillaume = User.create!(username: "Guillaume", email: "guillaume@hello.fr", password: "123456", phone_number: "07 77 72 64 44")
-audrey = User.create!(username: "Audrey", email: "audrey@hello.fr", password: "123456", phone_number: "06 32 45 67 89")
-hugo = User.create!(username: "Hugo", email: "hugo@hello.fr", password: "123456", phone_number: "06 12 34 56 78")
-robin = User.create!(username: "Robin", email: "robin@hello.fr", password: "123456", phone_number: "07 98 76 54 32")
+guillaume = User.create!(username: "Guillaume", email: "guillaume@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+audrey = User.create!(username: "Audrey", email: "audrey@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+hugo = User.create!(username: "Hugo", email: "hugo@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+robin = User.create!(username: "Robin", email: "robin@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+delphine = User.create!(username: "Delphine", email: "delphine@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+thomasb = User.create!(username: "Thomasb", email: "thomasb@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+amelie = User.create!(username: "Amelie", email: "amelie@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+lea = User.create!(username: "Lea", email: "lea@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+julie = User.create!(username: "Julie", email: "juliee@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+ana = User.create!(username: "Ana", email: "ana@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+maxime = User.create!(username: "Maxime", email: "maxime@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+martial = User.create!(username: "Martial", email: "martial@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+joy = User.create!(username: "Joy", email: "joy@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+sabri = User.create!(username: "Sabri", email: "sabri@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+juliend = User.create!(username: "Juliend", email: "juliend@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+bilal = User.create!(username: "Bilal", email: "bilal@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+dulcie = User.create!(username: "Dulcie", email: "dulcie@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+bastien = User.create!(username: "Bastien", email: "bastien@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+marie = User.create!(username: "Marie", email: "marie@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+diane = User.create!(username: "Diane", email: "diane@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+julienm = User.create!(username: "Julienm", email: "julienm@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+kha = User.create!(username: "Kha", email: "kha@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+mohamed = User.create!(username: "Mohamed", email: "mohamed@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+alessia = User.create!(username: "Alessia", email: "alessia@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+wissam = User.create!(username: "Wissam", email: "wissam@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+noemie = User.create!(username: "Noemie", email: "noemie@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+thomasp = User.create!(username: "Thomasp", email: "thomasp@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+aurore = User.create!(username: "Aurore", email: "aurore@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+david = User.create!(username: "David", email: "david@schwipe.me", password: "123456", phone_number: "07 77 72 64 44")
+olga = User.create!(username: "Olga", email: "olga@schwipe.me", password: "123456", phone_number: "06 32 45 67 89")
+louis = User.create!(username: "Louis", email: "louis@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+theophile = User.create!(username: "Theophile", email: "theophile@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
+alexis = User.create!(username: "Alexis", email: "alexis@schwipe.me", password: "123456", phone_number: "06 12 34 56 78")
+mathieu = User.create!(username: "Mathieu", email: "mathieu@schwipe.me", password: "123456", phone_number: "07 98 76 54 32")
 puts "Users created"
 
 puts "Creating 1 Pending Deck and 2 Closed Decks for Hugo..."
@@ -58,7 +88,19 @@ def create_nearby_items(json_response_nearby)
       "place_id=#{result.dig("place_id")}" \
       "&key=#{ENV["GOOGLE_API_KEY"]}")
       json_response_item_url = JSON.parse(URI.open(parsed_item_url).read)
-      item_url = json_response_item_url.dig("results", 0, "website")
+      item_url = json_response_item_url.dig("result", "website")
+
+    parsed_item_phone = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
+      "place_id=#{result.dig("place_id")}" \
+      "&key=#{ENV["GOOGLE_API_KEY"]}")
+      json_response_item_phone = JSON.parse(URI.open(parsed_item_phone).read)
+      item_phone = json_response_item_phone.dig("result", "formatted_phone_number")
+
+    parsed_item_opening_hours = URI("https://maps.googleapis.com/maps/api/place/details/json?" \
+      "place_id=#{result.dig("place_id")}" \
+      "&key=#{ENV["GOOGLE_API_KEY"]}")
+      json_response_item_opening_hours = JSON.parse(URI.open(parsed_item_opening_hours).read)
+      item_opening_hours = json_response_item_opening_hours.dig("result", "opening_hours", "weekday_text")
 
     item = Item.create!(
       name: result.dig("name"),
@@ -67,7 +109,9 @@ def create_nearby_items(json_response_nearby)
       rating: result.dig("rating") ? result.dig("rating").round(0).to_i : nil,
       price_range: result.dig("price_level"),
       item_type: "Restaurant",
-      photo_url: json_response_photo_url
+      photo_url: json_response_photo_url,
+      opening_hours: item_opening_hours,
+      item_phone: item_phone
     )
     puts "Restaurant #{item.name} created"
   end
