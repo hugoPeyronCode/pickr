@@ -15,7 +15,12 @@
           <% end %>
       </div>
 
-      <div class="card-item-pricing">€</div>
+      <div class="card-item-pricing">
+       <% deck_item.item.price_range.times do%>
+       €
+      <% end %>
+
+      </div>
     </div>
 
   </div>
