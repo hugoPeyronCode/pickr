@@ -35,8 +35,11 @@ class DecksController < ApplicationController
         @items = Item.near(@deck.address, 10).limit(10)
         @items = @items.where("price_range >= ?", @deck.price_range)
       elsif params[:item_type] == "Movie"
-        @items = Item.where(item_type: "Movie")
-        @items = @items.where(movie_genre: @deck.movie_genre) if params[:deck][:movie_genre] != ""
+        if params[:deck][:movie_genre] == "All"
+          @items = Item.where(item_type: "Movie")
+        else
+          @items = Item.where(movie_genre: params[:deck][:movie_genre])
+        end
       end
       @items.each do |item|
         deck_item = DeckItem.new(deck: @deck, item: item)
