@@ -1,6 +1,9 @@
 <div class="navbar-app d-flex justify-content-between p-3">
   <%= link_to decks_path, class:"d-flex flex-column align-items-center" do %>
-   <i class="fa-solid fa-inbox"></i>
+   <%= image_tag("dashboards.png",
+      style:"display: inline-block;
+      height: 40px; width: 40px;
+       object-fit: cover;")%>
     <div>
       Dashboard
     </div>
@@ -12,7 +15,15 @@
 
   <div type="button" data-bs-toggle="collapse" data-bs-target="#navbarBottom" aria-controls="navbarBottom" aria-expanded="false" aria-label="Toggle navigation">
     <span class="d-flex flex-column align-items-center">
+    <% if current_user.photo_url.attached? %>
+      <%= image_tag(current_user.photo_url,
+      style:"display: inline-block;
+      height: 40px; width: 40px;
+       border-radius: 50%;
+       object-fit: cover;")%>
+    <%else   %>
       <i class="fa-solid fa-user white"></i>
+     <%end %>
       <div>
         Profile
       </div>
