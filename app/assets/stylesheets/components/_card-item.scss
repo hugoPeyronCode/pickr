@@ -26,6 +26,12 @@
   margin: 0;
 }
 
+.most-voted-item {
+  color: black;
+  border: 5px solid #CCFF00;
+  border-radius: 5px 10px 5px 10px;
+}
+
 
 .card-item .card-item-infos {
   padding: 20px;
@@ -39,7 +45,6 @@
   font-weight: bold;
   color: white;
 }
-
 
 .ratings{
 }
