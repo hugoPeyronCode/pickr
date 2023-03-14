@@ -4,7 +4,7 @@ class DecksController < ApplicationController
     @all_my_decks = Deck.joins(:deck_items).joins(:votes).where("decks.user_id = ? OR votes.user_id = ?", current_user.id, current_user.id).distinct
     @my_decks = @all_my_decks.where.not(status: "Hidden").order(created_at: :desc)
     @pending_decks = @my_decks.where(status: "Pending").order(created_at: :desc)
-    @closed_decks = @my_decks.all.where(status: "Closed").order(created_at: :desc)
+    @closed_decks = @my_decks.where(status: "Closed").order(created_at: :desc)
     @hidden_decks = @my_decks.all.where(status: "Hidden").order(created_at: :desc)
   end
 
@@ -35,8 +35,11 @@ class DecksController < ApplicationController
         @items = Item.near(@deck.address, 10).limit(10)
         @items = @items.where("price_range >= ?", @deck.price_range)
       elsif params[:item_type] == "Movie"
-        @items = Item.where(item_type: "Movie")
-        @items = @items.where(movie_genre: @deck.movie_genre) if params[:deck][:movie_genre] != ""
+        if params[:deck][:movie_genre] == "All"
+          @items = Item.where(item_type: "Movie")
+        else
+          @items = Item.where(movie_genre: params[:deck][:movie_genre])
+        end
       end
       @items.each do |item|
         deck_item = DeckItem.new(deck: @deck, item: item)
