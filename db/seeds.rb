@@ -102,18 +102,20 @@ def create_nearby_items(json_response_nearby)
       json_response_item_opening_hours = JSON.parse(URI.open(parsed_item_opening_hours).read)
       item_opening_hours = json_response_item_opening_hours.dig("result", "opening_hours", "weekday_text")
 
-    item = Item.create!(
-      name: result.dig("name"),
-      item_url: item_url,
-      address: result.dig("vicinity"),
-      rating: result.dig("rating") ? result.dig("rating").round(0).to_i : nil,
-      price_range: result.dig("price_level"),
-      item_type: "Restaurant",
-      photo_url: json_response_photo_url,
-      opening_hours: item_opening_hours,
-      item_phone: item_phone
-    )
-    puts "Restaurant #{item.name} created"
+    if json_response_photo_url
+      item = Item.create!(
+        name: result.dig("name"),
+        item_url: item_url,
+        address: result.dig("vicinity"),
+        rating: result.dig("rating") ? result.dig("rating").round(0).to_i : nil,
+        price_range: result.dig("price_level"),
+        item_type: "Restaurant",
+        photo_url: json_response_photo_url,
+        opening_hours: item_opening_hours,
+        item_phone: item_phone
+      )
+      puts "Restaurant #{item.name} created"
+    end
   end
 end
 
