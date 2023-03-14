@@ -9,11 +9,18 @@
             <%= f.input :name, placeholder: "name of your deck" %>
             <%= f.input :address, placeholder: "which neighbourhood?" %>
             <%= f.input :price_range, input_html: { type: 'range', min: 0, max: 4, step: 1, class: 'form-range', id: 'customRange3', data: { action: "input->range-slider#change"} } %>
-            <p>Selected value: <span class="fw-bold" data-range-slider-target="euro">€€€</span></p>
+            <p class="fw-bold text-center" style="font-size: 25px;" data-range-slider-target="euro">€€€</p>
 
           <% elsif params[:deck] == "Movie" %>
               <%= f.input :name, placeholder: "name of your deck" %>
-              <%= f.input :movie_genre, collection: ["Drame", "Comédie", "Thriller", "Fantastique", "Romance", "Horreur"] %>
+              <%= f.input :movie_genre,
+                            as: :radio_buttons,
+                            collection_wrapper_tag: 'div',
+                            collection_wrapper_class: 'category-wrapper',
+                            item_wrapper_class: 'category-item',
+                            input_html: {class: 'category-selector'},
+                            collection: ["All", "Comédie", "Drame"],
+                            checked: "All" %>
           <% else %>
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
