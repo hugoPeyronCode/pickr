@@ -19,7 +19,19 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+
+    <% if user_signed_in? %>
+    <div class="d-flex justify-content-center m-3" >
+    <%= image_tag "logo-noir.png", style: "height:50px; width:29px" %>
+    </div>
+      <%= render "shared/navbar-mobile" %>
+    <% else %>
+      <div class="p-5">
+
+      </div>
+    <% end %>
+
+
     <%= yield %>
   </body>
 </html>

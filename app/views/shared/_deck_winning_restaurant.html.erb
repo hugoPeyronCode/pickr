@@ -1,10 +1,18 @@
 <div class="page-wrapper">
   <h2> <strong> And the winner is ... </strong> </h2>
 
-  <div class="winner-card" style="background-image: url('<%= winner.item.photo_url %>')">
+  <div class="winner-card" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= winner.item.photo_url %>')">
     <div class="winner-card-info">
       <p><%= winner.item.name %></p>
       <p><%= winner.item.address %></p>
+      <div class="ratings">
+        <% winner.item.rating.round.times do  %>
+          <i class="fa fa-star rating-color"></i>
+          <% end %>
+          <% (5 - winner.item.rating.round).times do  %>
+            <i class='fa fa-star'></i>
+          <% end %>
+      </div>
     </div>
   </div>
   <br>
@@ -17,6 +25,6 @@
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
     <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
     <div class="bg"></div>
-    <button class="btn btn-primary" data-action="click->clip-board#copy">Copier le lien</button>
+    <button class="btn btn-primary" data-action="click->clip-board#copy">Copy the link</button>
   </div>
 </div>

@@ -10,10 +10,9 @@
             <img src= <%=deck_item.item.photo_url %> class="swiper__card__img" />
             <div class="swiper__card__content_bottom">
               <p class="swiper__card__name">
-              <strong><%= deck_item.item.name %></strong>, <span class="profile-age">€</span>
+              <strong><%= deck_item.item.name %></strong>
               </p>
               <p class="swiper__card__distance">
-                <i class="fa-solid fa-location-dot pe-1"> </i><%= deck_item.item.address %>
                 <div class="ratings">
                 <% deck_item.item.rating.round.times do  %>
                   <i class="fa fa-star rating-color"></i>
