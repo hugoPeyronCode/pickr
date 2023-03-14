@@ -3,36 +3,34 @@
     <div class="card-deck-body">
       <div class="row">
       <h5 class="card-deck-title"> <%= deck.name %></h5>
+      <p class= "small text-secondary"> <%= deck.created_at.strftime("%d %B %Y") %></p>
         <div class="container">
-          <p> 👑
+          <p> 🚀
             <% if current_user.username == deck.user.username %>
-              You
+              Created by <%=deck.user.username%>
             <% else %>
               <%= deck.user.username %> </p>
             <% end %>
           </p>
-          <p> 📅 <%= deck.created_at.strftime("%d %B %Y")  %></p>
-          <p> 🗳️ <%= deck.votes.count %> total votes</p>
           <p> 🤼 <%= deck.voters.count %> person(s) voted </p>
           <% if deck.status == "Closed" %>
-          <p> 👑 <%= deck.most_voted_deck_item.item.name %> (<%= deck.most_voted_deck_item.votes_count %> votes) </p>
+          <p class= "most-voted-item"> 🏆<strong><%= deck.most_voted_deck_item.item.name %> </strong> </p>
           <% end %>
-
-          <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-            <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(deck) %>" readonly>
-            <div class="bg"></div>
-            <button class="btn btn-primary" data-action="click->clip-board#copy">Share List</button>
-          </div>
+          <div class="d-flex justify-content-between">
+            <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
+              <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(deck) %>" readonly>
+              <div class="bg"></div>
+              <button class="create-btn" data-action="click->clip-board#copy"><i class="fa-regular fa-share-from-square"></i> Share the link</button>
+            </div>
 
           <% if deck.status != "Hidden" %>
-          <div class="container">
+
             <%= link_to "", hide_deck_path(deck), data: {turbo_method: :put, turbo_confirm: 'Are you sure?'}, class: "hide-icon fas fa-times" %>
-          </div>
+   
           <% end %>
-        </div>
-        <div class= "container">
+
           <% if deck.user_id == current_user.id && deck.status == "Pending" %>
-          <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "btn btn-outline-warning btn-sm" %>
+          <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "close-btn" %>
           <% end %>
         </div>
       </div>
