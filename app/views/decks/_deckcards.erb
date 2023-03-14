@@ -5,13 +5,15 @@
       <h5 class="card-deck-title"> <%= deck.name %></h5>
       <p class= "small text-secondary"> <%= deck.created_at.strftime("%d %B %Y") %></p>
         <div class="container">
-          <p> 🚀
-            <% if current_user.username == deck.user.username %>
-              Created by <%=deck.user.username%>
-            <% else %>
-              <%= deck.user.username %> </p>
-            <% end %>
-          </p>
+        <p> 🚀 Created by <%= deck.user.email.split("@").first %>
+        <% if current_user.photo_url.present?%>
+          <%= image_tag(deck.user.photo_url,
+      style:"display: inline-block;
+      height: 20px; width: 20px;
+      border-radius: 50%;
+       object-fit: cover;")%>
+      <% end  %>
+      </p>
           <p> 🤼 <%= deck.voters.count %> person(s) voted </p>
           <% if deck.status == "Closed" %>
           <p class= "most-voted-item"> 🏆<strong><%= deck.most_voted_deck_item.item.name %> </strong> </p>
@@ -26,7 +28,7 @@
           <% if deck.status != "Hidden" %>
 
             <%= link_to "", hide_deck_path(deck), data: {turbo_method: :put, turbo_confirm: 'Are you sure?'}, class: "hide-icon fas fa-times" %>
-   
+
           <% end %>
 
           <% if deck.user_id == current_user.id && deck.status == "Pending" %>
@@ -35,5 +37,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 <% end %>

@@ -2,7 +2,7 @@
   <%= link_to decks_path, class:"d-flex flex-column align-items-center" do %>
    <%= image_tag("dashboards.png",
       style:"display: inline-block;
-      height: 40px; width: 40px;
+      height: 20px; width: 20px;
        object-fit: cover;")%>
     <div>
       Dashboard
@@ -22,8 +22,11 @@
        border-radius: 50%;
        object-fit: cover;")%>
     <%else   %>
-      <i class="fa-solid fa-user white"></i>
-     <%end %>
+        <%= image_tag("user.png",
+      style:"display: inline-block;
+      height: 20px; width: 20px;
+       object-fit: cover;")%>
+     <%end%>
       <div>
         Profile
       </div>
