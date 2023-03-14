@@ -182,8 +182,6 @@ rating_spectator1 = rating1.values_at(*indices1)
 
 rating_spectator1.map! { |rating| rating.tr(',', '.').to_f.round.to_i }
 
-p rating_spectator1
-
 photo_url1 = doc.css('.thumbnail-img').map do |links|
   if links['src'].match?(/\bdata/)
     links['data-src']
