@@ -85,6 +85,6 @@ class DecksController < ApplicationController
   private
 
   def deck_params
-    params.require(:deck).permit(:name, :address, :rating, :price_range, :movie_title, :movie_genre, :item_type)
+    params.require(:deck).permit(:name, :date, :address, :rating, :price_range, :movie_title, :movie_genre, :item_type)
   end
 end
