@@ -6,6 +6,8 @@
   align-items: center;
   flex-direction: column;
   height: 100%;
+  background-color: black;
+  color: white;
 }
 
 .winner-card {
@@ -17,9 +19,10 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 5px solid #CCFF00;
   border-radius: 5px;
   background-position: center center;
+  margin-top: 1em;
 
   .winner-image {
     width: 80px;
