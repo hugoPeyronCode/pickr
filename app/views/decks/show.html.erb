@@ -6,8 +6,9 @@
   <%= render "shared/progress-bar", completed_percent: @completed_percent%>
   <% if @deck.item_type == "Restaurant"%>
     <%= render "shared/card-swipe-restaurant", deck_items: @deck_item %>
+    <%=  render "shared/message-deck-fin", deck: @deck%>
   <% elsif @deck.item_type == "Movie"%>
     <%= render "shared/card-swipe-movie", deck_items: @deck_item %>
+    <%=  render "shared/message-deck-fin", deck: @deck%>
   <% end %>
-  <%=  render "shared/message-deck-fin", deck: @deck%>
 <% end %>
