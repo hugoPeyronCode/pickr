@@ -4,12 +4,13 @@
       <div class="deck-form" data-controller="range-slider">
         <h3>Create a new deck</h3>
         <%= simple_form_for @deck do |f| %>
+         <%= f.error_notification %>
           <%= hidden_field_tag :item_type, params[:deck] %>
           <% if params[:deck] == "Restaurant" %>
-            <%= f.input :name, placeholder: "name of your deck" %>
+            <%= f.input :name, placeholder: "name of your deck", input_html: { class: "form-control", required: true } %>
             <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class:"d-none"},
                         wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}, class: "mapboxgl-ctrl-geocoder"}%>
-            <%= f.input :price_range, input_html: { type: 'range', min: 0, max: 4, step: 1, class: 'form-range', id: 'customRange3', data: { action: "input->range-slider#change"} } %>
+            <%= f.input :price_range, input_html: { type: 'range', min: 0, max: 4, step: 1, class: 'form-range border-0', id: 'customRange3', data: { action: "input->range-slider#change"} } %>
             <p class="fw-bold text-center" style="font-size: 25px;" data-range-slider-target="euro">€€€</p>
 
           <% elsif params[:deck] == "Movie" %>
