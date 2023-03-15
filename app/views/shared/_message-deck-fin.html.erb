@@ -2,7 +2,7 @@
 <% if @deck.user == current_user %>
   <div class="container d-flex flex-column align-items-center hidden-text pe-3">
   <h2 class="text-center fw-bold"> CONGRATS ! 🥳</h2>
-  <p class="text-center fw-bold"> You've finished voting for propositions you liked, now share the deck's link to friends so they can vote as well :
+  <p class="text-center fw-bold"> Share the list link to friends :
   <br>
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
     <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
@@ -11,7 +11,7 @@
   </div>
    </p>
 
-  <p class="text-center fw-bold"> You're the owner of this poll, you can close it from the dashboard!</p>
+  <p class="text-center fw-bold"> You can close it from the dashboard!</p>
   </div>
 <% else %>
   <div class="container d-flex flex-column align-items-center hidden-text pe-3">

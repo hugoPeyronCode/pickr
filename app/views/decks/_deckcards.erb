@@ -2,18 +2,33 @@
   <div class="cards-deck">
     <div class="card-deck-body">
       <div class="row">
-      <h5 class="card-deck-title"> <%= link_to deck.name, deck_path(deck), style:"text-decoration: none"%></h5>
-      <p class= "small text-secondary"> 📅 On <%= deck.date&.strftime("%d %B %Y" ' @ ' "%l" ':' "%M%P") %></p>
-        <div class="container">
-        <p> 🚀 Owner : <% if deck.user.username.present?%>
-                        <%= deck.user.username %>
-                        <% else %>
-                        <%= deck.user.email.split("@").first %>
-                      <% end  %>
+      <h5 class="card-deck-title mb-0"> <% if deck.user.photo_url.present?%>
+            <%= image_tag(deck.user.photo_url,
+                style:"display: inline-block;
+                height: 30px; width: 30px;
+                border-radius: 50%;
+                object-fit: cover;")%>
+          <% else %>
+            <%= image_tag("https://i.pinimg.com/280x280_RS/35/a1/e6/35a1e6d69cf6924b6076d864a5d39e95.jpg",
+                style:"display: inline-block;
+                height: 20px; width: 20px;
+                border-radius: 50%;
+                object-fit: cover;")%>
+          <% end %>
+          <%= link_to deck.name, deck_path(deck), style:"text-decoration: none"%></h5>
+        <p class="small text-secondary ">
+          Proposed by
+          <% if deck.user.username.present?%>
+            <%= deck.user.username %>
+          <% else %>
+            <%= deck.user.email.split("@").first %>
+          <% end  %>
       </p>
-          <p> 🤼 Voters :  <%= deck.voters.count %> <%= render "shared/photo-voters", deck: deck %>  </p>
+      <p> 📅 On <%= deck.date&.strftime("%d %B %Y" ' @ ' "%l" ':' "%M%P") %></p>
+        <div class="container">
+          <p> 🤼 Voters : <%= render "shared/photo-voters", deck: deck %>  </p>
           <% if deck.status == "Closed" %>
-          <p class= "most-voted-item"> 🏆<strong><%= deck.most_voted_deck_item.item.name %> </strong> </p>
+          <span class= "most-voted-item"> 🏆 <strong><%= deck.most_voted_deck_item.item.name %> </strong>🏆 </span>
           <% end %>
           <div class="d-flex justify-content-between">
             <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">

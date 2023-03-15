@@ -6,8 +6,6 @@ export default class extends Controller {
   static targets = ["euro"]
 
   connect() {
-    console.log("hey")
-    console.log(this.euroTarget)
   }
 
   change(event) {
