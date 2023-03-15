@@ -1,5 +1,7 @@
-$black: #000000;
-$yellow: #CCFF00;
+
+$black: #000;
+$electric-yellow: #CCFF00;
+
 .hidden {
   display: none;
 }
@@ -106,7 +108,6 @@ $yellow: #CCFF00;
     width: 100%;
     height: 100%; opacity: 0; border-radius: 1.5rem;
     &:before {
-      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -118,21 +119,38 @@ $yellow: #CCFF00;
       box-shadow: -2rem -3rem #fff, 2rem -3rem #fff;
     }
     &:after {
-      content: "";
+      // content: "";
       position: absolute;
       left: 50%;
       top: 50%;
       width: 4rem;
       height: 1.5rem;
       margin-left: -2rem;
-      border: 0.6rem solid #fff; border-bottom: none; border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
+      // border: 0.6rem solid #fff;
+      border-bottom: none; border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
     }
     &.m--reject { background: $black;
+
+      &::after {
+        content: "🙁";
+        font-size: 4rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        // transform: scaleY(-1);
+      }
     }
     &.m--like {
-      background: $yellow;
+      background: $electric-yellow;
+      
       &:after {
-        transform: scaleY(-1);
+        content: "💖";
+        font-size: 4rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
