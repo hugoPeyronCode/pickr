@@ -3,7 +3,7 @@
     <div class="card-deck-body">
       <div class="row">
       <h5 class="card-deck-title"> <%= link_to deck.name, deck_path(deck), style:"text-decoration: none"%></h5>
-      <p class= "small text-secondary"> <%= deck.created_at.strftime("%d %B %Y") %></p>
+      <p class= "small text-secondary"> 📅 On <%= deck.date&.strftime("%d %B %Y" ' @ ' "%l" ':' "%M%P") %></p>
         <div class="container">
         <p> 🚀 Owner : <% if deck.user.username.present?%>
                         <%= deck.user.username %>
