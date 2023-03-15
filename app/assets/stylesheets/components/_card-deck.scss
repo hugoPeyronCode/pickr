@@ -2,6 +2,7 @@
   position: relative;
   background-size: cover;
   background-position: center;
+  border: solid 0.1px #d9d6d6;
   padding: 15px;
   margin-top: 15px;
   margin-bottom: 15;
@@ -10,7 +11,7 @@
   color: rgb(0, 0, 0);
   font-size: 15px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(89, 89, 89, 0.3);
+  box-shadow: 5px 6px 10px  rgba(187, 221, 3, 0.3);
 
   h5 {
     font-size: 1.7em;

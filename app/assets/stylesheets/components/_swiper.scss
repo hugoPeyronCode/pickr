@@ -1,5 +1,7 @@
+
 $black: #000;
 $electric-yellow: #CCFF00;
+
 .hidden {
   display: none;
 }
@@ -128,6 +130,7 @@ $electric-yellow: #CCFF00;
       border-bottom: none; border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;
     }
     &.m--reject { background: $black;
+
       &::after {
         content: "🙁";
         font-size: 4rem;
@@ -140,6 +143,7 @@ $electric-yellow: #CCFF00;
     }
     &.m--like {
       background: $electric-yellow;
+      
       &:after {
         content: "💖";
         font-size: 4rem;
