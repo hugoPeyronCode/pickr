@@ -11,14 +11,24 @@
   margin-bottom: 20px;
 }
 
-.deck-form input[type="text"], .deck-form select {
+.deck-form input[type="text"],input[type="password"], input[type="email"],input[type="file"], .deck-form select {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 3px solid black;
   border-radius: 5px;
   font-size: 16px;
 }
+
+.deck-form input[type="text"]:focus,input[type="password"]:focus, input[type="email"]:focus, input[type="file"]:focus {
+  color: rgb(14, 0, 0);
+  background-color: rgb(244, 244, 244);
+  box-shadow: #CCFF00 0px 0px 0px 0.25rem;
+  border-color: rgb(0, 0, 0);
+  outline: 0px;
+}
+
+
 
 .deck-form input[type="submit"] {
   padding: 10px 20px;
