@@ -27,4 +27,3 @@ application.register("star-rating", StarRatingController)
 
 import SwipeController from "./swipe_controller"
 application.register("swipe", SwipeController)
-
