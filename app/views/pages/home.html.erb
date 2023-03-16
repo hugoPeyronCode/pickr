@@ -6,12 +6,18 @@
       <div class="flex-grow">
         <h2 class="home-page">Thumbs up to swipe and choose</h2>
       </div>
-      <div class="flex-grow">
-        <a class = "btn-login" href="<%= new_user_session_path %>">Login</a>
-      </div>
-      <div class=" flex-grow">
-        <a class = "btn-signup" href="<%= new_user_registration_path %>"> Sign Up</a>
-      </div>
+      <% if user_signed_in? %>
+        <div class="flex-grow">
+          <a class = "btn-login" style="background-color: black;" href="<%= decks_choose_path %>">Let's vote</a>
+        </div>
+      <% else %>
+        <div class="flex-grow">
+          <a class = "btn-login" href="<%= new_user_session_path %>">Login</a>
+        </div>
+        <div class=" flex-grow">
+          <a class = "btn-signup" href="<%= new_user_registration_path %>"> Sign Up</a>
+        </div>
+      <% end %>
     </div>
   </div>
 </body>

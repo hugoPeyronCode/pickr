@@ -25,6 +25,9 @@ application.register("progress-bar", ProgressBarController)
 import RangeSliderController from "./range_slider_controller"
 application.register("range-slider", RangeSliderController)
 
+import SharingController from "./sharing_controller"
+application.register("sharing", SharingController)
+
 import StarRatingController from "./star_rating_controller"
 application.register("star-rating", StarRatingController)
 

@@ -1,19 +1,19 @@
 <div class="container">
-  <h1 class= "text-center-title"> Need a hand to choose...</h1>
+  <h1 class= "text-center"> Need a hand to choose...</h1>
     <div class="cards-choose">
       <%= link_to new_deck_path(deck: "Restaurant") do %>
         <div class="card-choose" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1564758564527-b97d79cb27c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80)">
         Restaurant
         </div>
       <% end %>
-      <%= link_to new_deck_path(deck: "Gift") do %>
-        <div class="card-choose" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1512909006721-3d6018887383?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
-        Gift
-        </div>
-        <% end %>
       <%= link_to new_deck_path(deck: "Movie") do %>
         <div class="card-choose" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
           Movie
+        </div>
+        <% end %>
+      <%= link_to new_deck_path(deck: "Gift") do %>
+        <div class="card-choose" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1512909006721-3d6018887383?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
+        Gift
         </div>
         <% end %>
     </div>
