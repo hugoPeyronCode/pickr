@@ -3,8 +3,8 @@ class PagesController < ApplicationController
 
   def home
     @home
-    if user_signed_in?
-      redirect_to decks_path
-    end
+    # if user_signed_in?
+    #   redirect_to decks_path
+    # end
   end
 end
