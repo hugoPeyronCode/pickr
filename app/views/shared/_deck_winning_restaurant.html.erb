@@ -32,4 +32,13 @@
     <div class="bg"></div>
     <button class="btn btn-primary" data-action="click->clip-board#copy">Copy the link</button>
   </div>
+  <br>
+  <div>
+    <span class="share-btn" data-controller="sharing"
+      data-action="click->sharing#share"
+      data-share-title-value="<%= @deck.name %>"
+      data-share-url-value="<%= deck_url(@deck) %>">
+    Share the link <i class="fa-solid fa-share-from-square"></i>
+    </span>
+  </div>
 </div>
