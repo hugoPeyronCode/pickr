@@ -9,7 +9,7 @@ export default class extends Controller {
   share() {
     const sharingObj = {
       title: this.titleValue,
-      text: `Hey, help me choose from one of those : ${this.titleValue}`,
+      text: `Hey, which would you pick for us out of those suggestions : ${this.titleValue}`,
       url: this.urlValue
     }
     if (navigator.share) {
