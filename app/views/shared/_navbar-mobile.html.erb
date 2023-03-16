@@ -15,8 +15,8 @@
 
   <div type="button" data-bs-toggle="collapse" data-bs-target="#navbarBottom" aria-controls="navbarBottom" aria-expanded="false" aria-label="Toggle navigation">
     <span class="d-flex flex-column align-items-center">
-    <% if current_user.photo_url.attached? %>
-      <%= image_tag(current_user.photo_url,
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag(current_user.photo.key,
       style:"display: inline-block;
       height: 30px; width: 30px;
        border-radius: 50%;

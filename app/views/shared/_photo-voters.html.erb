@@ -1,6 +1,6 @@
 <% deck.voters.each do |voter| %>
-  <% if voter.photo_url.present?%>
-    <%= image_tag(voter.photo_url,
+  <% if voter.photo.attached?%>
+    <%= cl_image_tag(voter.photo.key,
         style:"display: inline-block;
         height: 20px; width: 20px;
         border-radius: 50%;

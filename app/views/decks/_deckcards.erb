@@ -2,8 +2,8 @@
   <div class="cards-deck">
     <div class="card-deck-body">
       <div class="row">
-      <h5 class="card-deck-title mb-0"> <% if deck.user.photo_url.present?%>
-            <%= image_tag(deck.user.photo_url,
+      <h5 class="card-deck-title mb-0"> <% if deck.user.photo.attached?%>
+            <%= cl_image_tag(deck.user.photo.key,
                 style:"display: inline-block;
                 height: 30px; width: 30px;
                 border-radius: 50%;
