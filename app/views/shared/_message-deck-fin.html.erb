@@ -4,10 +4,12 @@
   <h2 class="text-center fw-bold"> CONGRATS ! 🥳</h2>
   <p class="text-center fw-bold"> Share the list link to friends :
   <br>
-  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
-    <div class="bg"></div>
-    <button class="btn btn-primary" data-action="click->clip-board#copy">Copy link</button>
+  <div class="mt-3">
+    <button class="create-btn" data-controller="sharing"
+      data-action="click->sharing#share"
+      data-sharing-title-value="<%= @deck.name %>"
+      data-sharing-url-value="<%= deck_url(@deck) %>"><i class="fa-regular fa-share-from-square"></i> Share</button>
+
   </div>
    </p>
 
@@ -18,10 +20,12 @@
   <h2 class="text-center fw-bold"> CONGRATS ! 🥳</h2>
   <p class="text-center fw-bold"> You've finished voting for propositions you liked, now share the deck's link to friends so they can vote as well :
   <br>
-  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
-    <div class="bg"></div>
-    <button class="btn btn-primary" data-action="click->clip-board#copy">Copy link</button>
+  <div class="mt-3">
+    <button class="create-btn" data-controller="sharing"
+      data-action="click->sharing#share"
+      data-sharing-title-value="<%= @deck.name %>"
+      data-sharing-url-value="<%= deck_url(@deck) %>"><i class="fa-regular fa-share-from-square"></i> Share</button>
+
   </div>
    </p>
 
