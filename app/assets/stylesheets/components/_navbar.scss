@@ -60,14 +60,14 @@
   width: 60px;
 }
 
-.link-center:hover{
+.link-center:active{
   .navbar-btn{
     color: black;
-    background-color: #CCFF00;
-    font-size: 59px;
-    border-radius: 50%;
-    border: solid 5px;
-    border-color: black;
+    // background-color: #CCFF00;
+    // font-size: 59px;
+    // border-radius: 50%;
+    // border: solid 5px;
+    // border-color: black;
     transition: 0.3s;
    }
 

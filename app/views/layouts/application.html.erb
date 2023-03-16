@@ -17,18 +17,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-    <the-script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></the-script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   </head>
-
-  <% if @win%>
-    <body style="background-color: black;">
-  <% else %>
     <body>
-  <% end %>
 
     <% if params[:action] == "home"  %>
-      <div class="p-5">
-      </div>
+
     <% elsif user_signed_in? && (params[:action] == "show" || params[:action] == "new") %>
       <%= render "shared/navbar-mobile" %>
     <% elsif user_signed_in? && (params[:action] != "show" || params[:action] != "new") %>
@@ -38,6 +32,8 @@
       <%= render "shared/navbar-mobile" %>
     <% end %>
 
-    <%= yield %>
+    <div class="app-content">
+      <%= yield %>
+    </div>
   </body>
 </html>
