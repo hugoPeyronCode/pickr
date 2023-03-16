@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :deck_items, through: :votes
   has_many :pending_decks, through: :deck_items, source: :deck
-  has_one_attached :photo_url
+  has_one_attached :photo
 
 end
