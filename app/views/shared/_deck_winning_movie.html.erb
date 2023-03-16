@@ -1,11 +1,10 @@
-<div class="page-wrapper">
+<div class="page-wrapper p-2">
   <h2> <strong> And the winner is ...</strong> </h2>
 
   <div class="winner-card" style="background-image: url('<%= winner.item.photo_url %>')">
     <div class="winner-card-info">
     </div>
   </div>
-  <br>
   <div class="emoji-container">
     <% 10.times do  %>
         <div class="emoji" style="top: <%= rand(0..100) %>vh; left: <%= rand(0..100) %>vw;"> <h1>🎉</h1></div>
@@ -15,6 +14,6 @@
   <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
     <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
     <div class="bg"></div>
-    <button class="btn btn-primary" data-action="click->clip-board#copy">Copy the link</button>
+    <button class="close-btn" data-action="click->clip-board#copy">Copy the link</button>
   </div>
 </div>

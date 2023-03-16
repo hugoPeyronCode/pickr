@@ -57,6 +57,7 @@ class DecksController < ApplicationController
     @deck_items_voted = @my_votes.pluck(:deck_item_id)
     @deck_items = @deck.deck_items.where.not(id: @deck_items_voted)
     @deck_winning_item = @deck.most_voted_deck_item
+    @win = @deck.most_voted_deck_item.present?
   end
 
   def close_vote
