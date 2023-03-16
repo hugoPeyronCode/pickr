@@ -19,6 +19,9 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import NameController from "./name_controller"
+application.register("name", NameController)
+
 import ProgressBarController from "./progress_bar_controller"
 application.register("progress-bar", ProgressBarController)
 
@@ -33,3 +36,6 @@ application.register("star-rating", StarRatingController)
 
 import SwipeController from "./swipe_controller"
 application.register("swipe", SwipeController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
