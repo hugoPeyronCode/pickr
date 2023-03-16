@@ -16,9 +16,3 @@
 @import "pages/index";
 @import "pages/home";
 @import "pages/simpleform";
-
-body {
-  overscroll-behavior: none;
-  min-height: calc(100vh - 120px);
-  padding-bottom: 120px;
-}
