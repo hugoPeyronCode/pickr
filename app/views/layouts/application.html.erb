@@ -22,16 +22,16 @@
 
   <body>
 
-    <% if user_signed_in? && params[:action] != "show" && params[:action] != "new" %>
+    <% if params[:action] == "home"  %>
+      <div class="p-5">
+      </div>
+    <% elsif user_signed_in? && (params[:action] == "show" || params[:action] == "new") %>
+      <%= render "shared/navbar-mobile" %>
+    <% elsif user_signed_in? && (params[:action] != "show" || params[:action] != "new") %>
       <div class="d-flex justify-content-center m-3" >
         <%= image_tag "logo-noir.png", style: "height:50px; width:29px" %>
       </div>
       <%= render "shared/navbar-mobile" %>
-    <% elsif user_signed_in? && params[:action] = "show" && params[:action] = "new" %>
-      <%= render "shared/navbar-mobile" %>
-    <% else %>
-      <div class="p-5">
-      </div>
     <% end %>
 
     <%= yield %>
