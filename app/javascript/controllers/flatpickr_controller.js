@@ -7,8 +7,8 @@ export default class extends Controller {
   static targets = [ "eventTime" ]
 
   connect() {
+    console.log(this.eventTimeTarget)
     flatpickr(this.eventTimeTarget, {
-      // inline: true
       enableTime: true
     })
   }

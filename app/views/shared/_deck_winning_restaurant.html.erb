@@ -1,4 +1,4 @@
-<div class="page-wrapper">
+<div class="page-wrapper p-2">
   <h2> <strong> And the winner is ... </strong> </h2>
 
   <div class="winner-card" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= winner.item.photo_url %>')">
@@ -19,7 +19,6 @@
     <div><p><i class="fa-solid fa-phone"></i> Call to book for <%= winner.deck.voters.count %> people <br><%= winner.deck.date&.strftime(" on %d %B %Y" ' @ ' "%l" ':' "%M%P") %></p></div>
     <div class="phone_number"> <%= winner.item.item_phone %></div>
   </div>
-  <br>
   <div class="emoji-container">
     <% 10.times do  %>
         <div class="emoji" style="top: <%= rand(0..90) %>vh; left: <%= rand(0..95) %>vw;"> <h1>🎉</h1></div>
@@ -31,5 +30,6 @@
       data-action="click->sharing#share"
       data-sharing-title-value="<%= @deck.deck_type %>"
       data-sharing-url-value="<%= deck_url(@deck) %>"><i class="fa-regular fa-share-from-square"></i> Share</button>
+
   </div>
 </div>
