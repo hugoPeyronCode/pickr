@@ -18,19 +18,19 @@
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :date, as: :string, input_html: { data: { flatpickr_target: "eventTime" } } %>
               <%= f.input :movie_genre,
-                            as: :radio_buttons,
-                            collection_wrapper_tag: 'div',
-                            collection_wrapper_class: 'category-wrapper',
-                            item_wrapper_class: 'category-item',
-                            input_html: {class: 'category-selector'},
-                            collection: ["All", "Comédie", "Drame"],
-                            checked: "All" %>
-          <% else %>
+                          as: :radio_buttons,
+                          collection_wrapper_tag: 'div',
+                          collection_wrapper_class: 'category-wrapper',
+                          item_wrapper_class: 'category-item',
+                          input_html: {class: 'category-selector'},
+                          collection: [["All<br>🎥".html_safe, "All"], ["Comedy<br>😂".html_safe, "Comédie"], ["Drama<br>😭".html_safe, "Drame"]],
+                          checked: "All" %>
+            <% else %>
               <%= f.input :name, placeholder: "name of your deck" %>
               <%= f.input :date, as: :string, input_html: { data: { flatpickr_target: "eventTime" } } %>
               <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
            <% end %>
-          <%= f.submit "Validate", class: "create-btn" %>
+          <%= f.submit "Validate", class: "create-btn w-100"  %>
         <% end %>
       </div>
     </div>
