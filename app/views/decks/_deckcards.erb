@@ -30,8 +30,8 @@
           <% if deck.status == "Closed" %>
           <span class= "most-voted-item"> 🏆 <strong><%= deck.most_voted_deck_item.item.name %> </strong>🏆 </span>
           <% end %>
-          <div class="d-flex justify-content-between">
-            <button class="create-btn mt-2" data-controller="sharing"
+          <div class="d-flex justify-content-between mt-2">
+            <button class="create-btn" data-controller="sharing"
               data-action="click->sharing#share"
               data-sharing-title-value="<%= deck.name %>"
               data-sharing-url-value="<%= deck_url(deck) %>"><i class="fa-regular fa-share-from-square"></i> Share</button>
