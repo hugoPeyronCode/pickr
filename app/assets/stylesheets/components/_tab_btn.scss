@@ -5,7 +5,7 @@
   background-color: transparent; /* set background color to transparent */
   border: none; /* remove border */
   border-radius: 5px;
-  padding: 3px;
+  padding: 3px 10px;
   color: #555; /* set text color */
   font-weight: bold;
   transition: all 0.2s ease-in-out; /* add transition effect */
@@ -14,10 +14,11 @@
 .tab_btn.active {
   background-color: #CCFF00; /* set background color for active tab */
   color: #000; /* set text color for active tab */
-  padding: 3px 10px;
 }
 
-.tab_btn:hover {
-  background-color: #eee; /* set background color on hover */
-  cursor: pointer;
+@media (pointer: fine) {
+  .tab_btn:hover {
+    background-color: #eee; /* set background color on hover */
+    cursor: pointer;
+  }
 }
