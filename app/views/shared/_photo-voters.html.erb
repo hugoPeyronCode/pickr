@@ -1,0 +1,15 @@
+<% deck.voters.each do |voter| %>
+  <% if voter.photo_url.present?%>
+    <%= image_tag(voter.photo_url,
+        style:"display: inline-block;
+        height: 20px; width: 20px;
+        border-radius: 50%;
+        object-fit: cover;")%>
+  <% else %>
+    <%= image_tag("https://i.pinimg.com/280x280_RS/35/a1/e6/35a1e6d69cf6924b6076d864a5d39e95.jpg",
+        style:"display: inline-block;
+        height: 20px; width: 20px;
+        border-radius: 50%;
+        object-fit: cover;")%>
+  <% end %>
+<% end %>

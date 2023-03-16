@@ -2,33 +2,45 @@
   <div class="cards-deck">
     <div class="card-deck-body">
       <div class="row">
-      <h5 class="card-deck-title"> <%= link_to deck.name, deck_path(deck), style:"text-decoration: none"%></h5>
-      <p class= "small text-secondary"> 📅 On <%= deck.date&.strftime("%d %B %Y" ' @ ' "%l" ':' "%M%P") %></p>
-        <div class="container">
-        <p> 🚀 Created by <%= deck.user.email.split("@").first %>
-        <% if current_user.photo_url.present?%>
-          <%= image_tag(deck.user.photo_url,
-      style:"display: inline-block;
-      height: 20px; width: 20px;
-      border-radius: 50%;
-       object-fit: cover;")%>
-      <% end  %>
+      <h5 class="card-deck-title mb-0"> <% if deck.user.photo_url.present?%>
+            <%= image_tag(deck.user.photo_url,
+                style:"display: inline-block;
+                height: 30px; width: 30px;
+                border-radius: 50%;
+                object-fit: cover;")%>
+          <% else %>
+            <%= image_tag("https://i.pinimg.com/280x280_RS/35/a1/e6/35a1e6d69cf6924b6076d864a5d39e95.jpg",
+                style:"display: inline-block;
+                height: 20px; width: 20px;
+                border-radius: 50%;
+                object-fit: cover;")%>
+          <% end %>
+          <%= link_to deck.name, deck_path(deck), style:"text-decoration: none"%></h5>
+        <p class="small text-secondary ">
+          Proposed by
+          <% if deck.user.username.present?%>
+            <%= deck.user.username %>
+          <% else %>
+            <%= deck.user.email.split("@").first %>
+          <% end  %>
       </p>
-          <p> 🤼 <%= deck.voters.count %> person(s) voted </p>
+      <p> 📅 On <%= deck.date&.strftime("%d %B %Y" ' @ ' "%l" ':' "%M%P") %></p>
+        <div class="container">
+          <p> 🤼 Voters : <%= render "shared/photo-voters", deck: deck %>  </p>
           <% if deck.status == "Closed" %>
-          <p class= "most-voted-item"> 🏆<strong><%= deck.most_voted_deck_item.item.name %> </strong> </p>
+          <span class= "most-voted-item"> 🏆 <strong><%= deck.most_voted_deck_item.item.name %> </strong>🏆 </span>
           <% end %>
           <div class="d-flex justify-content-between">
             <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
               <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(deck) %>" readonly>
               <div class="bg"></div>
-              <button class="create-btn" data-action="click->clip-board#copy"><i class="fa-regular fa-share-from-square"></i> Share the link</button>
+              <button class="create-btn" data-action="click->clip-board#copy"><i class="fa-regular fa-share-from-square"></i> Share</button>
             </div>
           <% if deck.status != "Hidden" %>
             <%= link_to "", hide_deck_path(deck), style: "text-decoration: none", data: {turbo_method: :put, turbo_confirm: 'Are you sure?'}, class: "hide-icon fas fa-times" %>
           <% end %>
           <% if deck.user_id == current_user.id && deck.status == "Pending" %>
-            <%= link_to "Close the vote", close_vote_deck_path(deck), method: :put, class: "close-btn" %>
+            <%= link_to "Close votes", close_vote_deck_path(deck), method: :put, class: "close-btn" %>
           <% end %>
         </div>
       </div>
