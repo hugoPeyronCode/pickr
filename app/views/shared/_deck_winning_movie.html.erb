@@ -12,9 +12,10 @@
     <%end %>
   </div>
 
-  <div data-controller="clip-board" data-clip-board-feedback-text-value="Copied!">
-    <input style="opacity: 1; height: auto; width:auto; position: absolute; z-index: -1;" class="d-some" data-clip-board-target="input" type="text" value=" <%= deck_url(@deck) %>" readonly>
-    <div class="bg"></div>
-    <button class="btn btn-primary" data-action="click->clip-board#copy">Copy the link</button>
+  <div>
+    <button class="create-btn" data-controller="sharing"
+      data-action="click->sharing#share"
+      data-sharing-title-value="<%= @deck.deck_type %>"
+      data-sharing-url-value="<%= deck_url(@deck) %>"><i class="fa-regular fa-share-from-square"></i> Share</button>
   </div>
 </div>
