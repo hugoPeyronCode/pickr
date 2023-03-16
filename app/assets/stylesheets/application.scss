@@ -19,6 +19,6 @@
 
 body {
   overscroll-behavior: none;
-  min-height: 100vh;
-  margin-bottom: 120px;
+  min-height: calc(100vh - 120px);
+  padding-bottom: 120px;
 }
