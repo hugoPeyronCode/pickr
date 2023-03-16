@@ -22,15 +22,13 @@
 
   <body>
 
-    <% if user_signed_in? && params[:action] != "show" %>
+    <% if user_signed_in? && params[:action] != "show" && params[:action] != "new" %>
       <div class="d-flex justify-content-center m-3" >
         <%= image_tag "logo-noir.png", style: "height:50px; width:29px" %>
       </div>
       <%= render "shared/navbar-mobile" %>
-    <% elsif user_signed_in? && params[:action] = "show" %>
+    <% elsif user_signed_in? && params[:action] = "show" && params[:action] = "new" %>
       <%= render "shared/navbar-mobile" %>
-      <div class="p-2">
-      </div>
     <% else %>
       <div class="p-5">
       </div>
