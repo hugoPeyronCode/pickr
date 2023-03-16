@@ -30,7 +30,7 @@
               <%= f.input :date, as: :string, input_html: { data: { flatpickr_target: "eventTime" } } %>
               <%= f.input :price_range, collection: ([['€', '€'], ['€€', '€€'], ['€€€', '€€€'], ['€€€€', '€€€€']]).to_a %>
            <% end %>
-          <%= f.submit "Validate", class: "create-btn" %>
+          <%= f.submit "Validate", class: "create-btn w-100"  %>
         <% end %>
       </div>
     </div>
