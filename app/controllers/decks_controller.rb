@@ -52,6 +52,7 @@ class DecksController < ApplicationController
   end
 
   def show
+    @win = false
     @deck = Deck.find(params[:id])
     @my_votes = Vote.where(user: current_user)
     @deck_items_voted = @my_votes.pluck(:deck_item_id)

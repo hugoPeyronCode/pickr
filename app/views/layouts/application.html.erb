@@ -20,7 +20,11 @@
     <the-script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></the-script>
   </head>
 
-  <body>
+  <% if @win%>
+    <body style="background-color: black;">
+  <% else %>
+    <body>
+  <% end %>
 
     <% if user_signed_in? && params[:action] != "show" %>
       <div class="d-flex justify-content-center m-3" >
@@ -28,9 +32,7 @@
       </div>
       <%= render "shared/navbar-mobile" %>
     <% elsif user_signed_in? && params[:action] = "show" %>
-      <%= render "shared/navbar-mobile" %>
-      <div class="p-2">
-      </div>
+        <%= render "shared/navbar-mobile" %>
     <% else %>
       <div class="p-5">
       </div>
