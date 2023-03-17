@@ -33,3 +33,6 @@ application.register("star-rating", StarRatingController)
 
 import SwipeController from "./swipe_controller"
 application.register("swipe", SwipeController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
